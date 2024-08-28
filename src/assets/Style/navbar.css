@@ -1,0 +1,53 @@
+.navbar_back{
+    background: url("../../assets/Images/back.jpg") no-repeat center center / cover;
+    height: 100vh;
+    width: 100%;
+    border-image: fill 0 linear-gradient(#0001, #000);
+}
+.navbar{
+    background: transparent;
+
+
+}
+.navbar_start{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+
+}
+.navbar_links ul{
+    display: flex;
+    gap: 32px;
+}
+.navbar_profile{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.navbar_links ul li a{
+    font-size: 16px;
+    color: #fff;
+    line-height: normal;
+    font-weight: 300;
+}
+.navbar_active{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold !important;
+}
+.navbar_profile i{
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.navbar_profile_logo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+}
