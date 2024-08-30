@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 110px;
+    height: 10vh;
 
 }
 .navbar_links ul{
@@ -50,4 +50,72 @@
     align-items: center;
     cursor: pointer;
     gap: 8px;
+}
+/*BANNER*/
+.btn_watch i{
+    width: 19px;
+    height: 19px;
+    margin-right: 10px;
+}
+.btn-watchlist{
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.banner_info h1{
+    font-size:32px;
+    color: var(--color-main);
+    font-weight: bold;
+}
+.banner_info span{
+    background: #0D0C0F;
+    color: #f9f9f9;
+    font-size: 12px;
+    border-radius: 16px;
+    padding: 4px 16px;
+}
+.banner_info{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.banner_info p{
+    color: var(--color-content);
+    font-size: 14px;
+    font-weight: normal;
+
+}
+.banner_start{
+    margin-bottom: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.banner{
+    display: flex;
+    align-items: flex-end;
+    height: 90vh;
+}
+.banner_links-btns{
+    gap: 20px;
+    display: flex;
+}
+.banner_links-btns button{
+    background: #0D0C0F;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 12px 24px;
+    cursor: pointer;
+
+    color: var(--color-main);
+    border: 1px solid var(--color-main);
+}
+.banner_links-btns button i{
+    margin-right: 5px;
 }

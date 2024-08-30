@@ -13,10 +13,28 @@ a{
 li{
     list-style: none;
 }
-
+:root{
+    --back-main: #00925D;
+    --color-main: #fff;
+    --color-content: #9CA4AB;
+}
 .container{
     max-width: 1440px;
     padding: 0 75px;
     width:100%;
     margin: 0 auto;
+}
+.btn_watch{
+    display: flex;
+    gap: 20px;
+}
+.btn-main{
+    background: var(--back-main);
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--color-main);
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid var(--back-main);
 }
