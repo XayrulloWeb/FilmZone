@@ -19,6 +19,25 @@
 .navbar_links ul{
     display: flex;
     gap: 32px;
+    transition: transform  .3s ;
+
+}
+.navbar_links ul li:hover{
+    transform: scale(1.04);
+
+
+}
+.navbar_links ul li a::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height:1px;
+    background-color: rgba(228, 15, 15);
+    transform: scale(0);
+    transition: all .3s ;
+}
+.navbar_links ul li a:hover:after{
+    transform: scale(1);
 }
 .navbar_profile{
     display: flex;
@@ -56,6 +75,12 @@
     width: 19px;
     height: 19px;
     margin-right: 10px;
+    
+}
+
+.btn-main:hover{
+    background: transparent;
+    border: 1px solid #fff;
 }
 .btn-watchlist{
     border: 1px solid #fff;
@@ -66,6 +91,13 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    transition: background .2s linear;
+    
+}
+.btn-watchlist:hover{
+   
+    background: var( --back-main);
+    border: none;
 }
 .banner_info h1{
     font-size:32px;
@@ -115,6 +147,13 @@
 
     color: var(--color-main);
     border: 1px solid var(--color-main);
+    transition: background, transform  .02s linear;
+}
+.banner_links-btns button:hover{
+    background: var(--color-content);
+    color: rgb(49, 42, 32);
+    transform: translate3d(-2px, -2px, -2px);
+
 }
 .banner_links-btns button i{
     margin-right: 5px;

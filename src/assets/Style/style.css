@@ -37,4 +37,5 @@ li{
     padding: 10px 20px;
     cursor: pointer;
     border: 1px solid var(--back-main);
+    transition: background .2s linear;
 }

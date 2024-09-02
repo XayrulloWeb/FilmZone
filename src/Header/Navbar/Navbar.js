@@ -12,11 +12,11 @@ function Navbar(props) {
                     </div>
                     <div className="navbar_links">
                         <ul>
-                            <li><a className='navbar_active' href="#">Home</a></li>
-                            <li><a href="#">Discover</a></li>
-                            <li><a href="#">Movie Release</a></li>
-                            <li><a href="#">Forum</a></li>
-                            <li><a href="#">About</a></li>
+                            <li><a className='navbar_link' href="#">Home</a></li>
+                            <li><a className='navbar_link' href="#">Discover</a></li>
+                            <li><a className='navbar_link' href="#">Movie Release</a> </li>
+                            <li><a className='navbar_link' href="#">Forum</a></li>
+                            <li><a className='navbar_link' href="#">About</a></li>
                         </ul>
                     </div>
                     <div className="navbar_profile">
