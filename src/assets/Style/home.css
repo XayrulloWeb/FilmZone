@@ -1,0 +1,101 @@
+.home{
+    background: #000000;
+}
+.MovieBox{
+    cursor: pointer;
+    width: 250px;
+}
+.MovieBox-img {
+    width: 280px;
+    height: 340px;
+    margin-bottom: 12px;
+    margin-top: 24px;
+}
+.MovieBox-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+}
+.MovieBox-name h3{
+    color: var(--color-main);
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 250px;
+}
+.MovieBox-about{
+    display: flex;
+}
+.MovieBox-rating{
+    display: flex;
+    align-items: center;
+}
+.MovieBox-rating p{
+    font-size: 12px;
+    color: var(--color-main);
+    font-weight: bold;
+    margin-left: 5px;
+}
+.MovieAction{
+    padding-bottom: 100px;
+}
+.MovieBox-category{
+    display: flex;
+    align-items: center;
+}
+.MovieBox-category p{
+    color: #78828A;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.MovieBox-category a{
+    color: #78828A;
+    font-size: 12px;
+    font-weight: normal;
+}
+.slick-prev, .slick-next{
+    width: 40px; /* Reduced size */
+    height: 40px; /* Reduced size */
+    border: none;
+    border-radius: 50%;
+    background-color: #28262D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    z-index: 99;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+.slick-next::before, .slick-prev::before{
+    content: '';
+    display: block;
+    width: 10px; /* Reduced arrow size */
+    height: 10px; /* Reduced arrow size */
+    color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    position: absolute;
+}
+
+.slick-next::before{
+    right: 16px; /* Adjusted position */
+    bottom: 15px; /* Adjusted position */
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+}
+.slick-prev::before{
+    border-width: 2px 0 0 2px;
+    left: 16px; /* Adjusted position */
+    bottom: 15px; /* Adjusted position */
+    transform: rotate(-45deg);
+}
+.MovieBox{
+    position: relative;
+    overflow: hidden;
+}

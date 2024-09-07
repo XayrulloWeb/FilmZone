@@ -3,6 +3,8 @@
     height: 100vh;
     width: 100%;
     border-image: fill 0 linear-gradient(#0001, #000);
+    overflow: hidden;
+    background-attachment: fixed;
 }
 .navbar{
     background: transparent;

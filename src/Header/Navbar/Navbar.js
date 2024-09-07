@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from "../../assets/Logo's/logoSite.png"
 import profile_logo from "../../assets/Logo's/profile_logo.png"
+import {Link} from "react-router-dom";
 
 function Navbar(props) {
     return (
@@ -13,7 +14,7 @@ function Navbar(props) {
                     <div className="navbar_links">
                         <ul>
                             <li><a className='navbar_active' href="#">Home</a></li>
-                            <li><a href="#">Discover</a></li>
+                            <li><Link to='/disocver' href="#">Discover</Link></li>
                             <li><a href="#">Movie Release</a></li>
                             <li><a href="#">Forum</a></li>
                             <li><a href="#">About</a></li>
