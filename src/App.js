@@ -12,7 +12,8 @@ function App() {
         <div className="wrapper">
             <div className="navbar_back">
                 <Navbar/>
-                <Banner/>
+                <Banner/>fgh
+                gfg
             </div>
             <div className="routes">
                 <Switch>
