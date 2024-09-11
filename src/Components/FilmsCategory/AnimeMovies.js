@@ -1,9 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import {useHistory} from "react-router-dom";
 import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
+import {useHistory} from "react-router-dom";
 
-function ComedyMovies(props) {
+function AnimeMovies(props) {
+    const genreMap = {
+        28: 'Action',
+        12: 'Adventure',
+        16: 'Animation',
+        35: 'Comedy',
+        80: 'Crime',
+        99: 'Documentary',
+        18: 'Drama',
+        10751: 'Family',
+        14: 'Fantasy',
+        36: 'History',
+        27: 'Horror',
+        10402: 'Music',
+        9648: 'Mystery',
+        10749: 'Romance',
+        878: 'Science Fiction',
+        10770: 'TV Movie',
+        53: 'Thriller',
+        10752: 'War',
+        37: 'Western'
+    };
     const settings = {
         dots: true,
         infinite: false,
@@ -37,59 +58,38 @@ function ComedyMovies(props) {
             }
         ]
     };
-    const genreMap = {
-        28: 'Action',
-        12: 'Adventure',
-        16: 'Animation',
-        35: 'Comedy',
-        80: 'Crime',
-        99: 'Documentary',
-        18: 'Drama',
-        10751: 'Family',
-        14: 'Fantasy',
-        36: 'History',
-        27: 'Horror',
-        10402: 'Music',
-        9648: 'Mystery',
-        10749: 'Romance',
-        878: 'Science Fiction',
-        10770: 'TV Movie',
-        53: 'Thriller',
-        10752: 'War',
-        37: 'Western'
-    };
+    const [animeMovies, setAnimeMovies] = useState([]);
 
-    const [comedyMovies, setComedyMovies] = useState([]);
     const history = useHistory();
 
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
 
-    const getComedyMovies = () => {
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=35')
+    const getAnimeMovies = () => {
+        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=16')
             .then(res => res.json())
-            .then(json => setComedyMovies(json.results))
-            .catch(err => console.error("Error fetching comedy movies: ", err));
+            .then(json => setAnimeMovies(json.results))
+            .catch(err => console.error("Error fetching anime movies: ", err));
     }
 
     useEffect(() => {
-        getComedyMovies();
+        getAnimeMovies();
     }, []);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
+
     return (
-        <div>
-            <div className="MovieAction_start" style={{marginTop: '50px'}}>
+            <div className="MovieAction_start">
                 <div className="MovieAction_text">
-                    <h2 className='MovieText'>Comedy Movies for you</h2>
+                    <h2 className='MovieText'>Anime Movies for you</h2>
                 </div>
                 <div className="MovieAction_row">
                     <Slider {...settings}>
                         {
-                            comedyMovies.map(movie => {
+                            animeMovies.map(movie => {
                                 return (
                                     <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
                                         <div className="MovieBox-img">
@@ -115,9 +115,7 @@ function ComedyMovies(props) {
                     </Slider>
                 </div>
             </div>
-
-        </div>
     );
 }
 
-export default ComedyMovies;
+export default AnimeMovies;

@@ -9,7 +9,10 @@ function Navbar(props) {
             <div className="container">
                 <div className="navbar_start">
                     <div className="navbar_logo">
-                        <img src={logo} alt="logo"/>
+                        <Link to='/'>
+                            <img src={logo} alt="logo"/>
+
+                        </Link>
                     </div>
                     <div className="navbar_links">
                         <ul>

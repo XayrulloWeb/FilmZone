@@ -1,6 +1,7 @@
 import React from 'react';
 import HorrorMovies from "./HorrorMovies";
 import ComedyMovies from "./ComedyMovies";
+import AnimeMovies from "./AnimeMovies";
 
 function Movies(props) {
     return (
@@ -8,6 +9,7 @@ function Movies(props) {
             <div className="container">
                 <HorrorMovies/>
                 <ComedyMovies/>
+                <AnimeMovies/>
             </div>
         </div>
     );
