@@ -21,7 +21,29 @@
 .navbar_links ul{
     display: flex;
     gap: 32px;
+    transition: transform 0.2s;
 }
+
+.navbar_links ul li {
+    position: relative; /* Ensure the pseudo-element is positioned relative to the li */
+}
+
+.navbar_links ul li:after {
+    content: "";
+    display: block;
+    width: 0; /* Start with no underline */
+    height: 2px;
+    background: #ffffff;
+    position: absolute; /* Position it absolutely within the li */
+    bottom: -3px; /* Align it to the bottom */
+    left: 0; /* Align it to the left */
+    transition: width 0.5s; /* Smooth transition for width */
+}
+
+.navbar_links ul li:hover:after {
+    width: 100%; /* Expand the underline on hover */
+}
+
 .navbar_profile{
     display: flex;
     align-items: center;
@@ -68,6 +90,20 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+}
+.btn-main{
+    transition:background .2s ease-in-out;
+}
+.btn-main:hover{
+    background: transparent !important;
+    border-color: #f9f9f9 !important;
+}
+.btn-watchlist{
+    transition:background .2s ease-in-out;
+}
+.btn-watchlist:hover{
+    background: var(--back-main) !important;
+    border:none;
 }
 .banner_info h1{
     font-size:32px;
@@ -117,7 +153,15 @@
 
     color: var(--color-main);
     border: 1px solid var(--color-main);
+    transition: transform  .4s , background .4s ;
+
 }
 .banner_links-btns button i{
     margin-right: 5px;
+}
+
+.banner_links-btns button:hover{
+    transform: translate3d(-4px, -4px, -4px);
+ background: var(--color-content);
+
 }
