@@ -6,8 +6,8 @@
     width: 250px;
 }
 .MovieBox-img {
-    width: 280px;
-    height: 340px;
+    width: 250px;
+    height: 300px;
     margin-bottom: 12px;
     margin-top: 24px;
 }
@@ -98,4 +98,23 @@
 .MovieBox{
     position: relative;
     overflow: hidden;
+}
+
+@media(max-width: 1000px) {
+    .MovieBox-img {
+        width: 220px;
+        height: 300px;
+    }
+}
+@media (max-width: 600px) {
+    .MovieBox-img {
+        width: 200px;
+        height: 250px;
+    }
+}
+@media(max-width: 426px){
+    .MovieBox-img {
+        width: 100% !important;
+
+    }
 }

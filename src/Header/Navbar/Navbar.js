@@ -43,8 +43,43 @@ function Navbar() {
         };
     }, [isOpen]);
 
+
+
+
+
+    const [isActive, setIsActive] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
+    const searchToggle = (evt) => {
+        // Toggle active state
+        if (!isActive) {
+            setIsActive(true);
+            evt.preventDefault();
+        } else {
+            // Check if clicked outside the input holder
+            if (!evt.target.closest('.input-holder')) {
+                setIsActive(false);
+                setSearchValue(''); // Clear input
+            }
+        }
+    };
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 300);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Удаляем обработчик события при размонтировании компонента
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <div className='navbar'>
+        <div className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container">
                 <div className="navbar_start">
                     <div className="navbar_logo">
@@ -63,19 +98,33 @@ function Navbar() {
                     </div>
                     <div className="navbar_profile">
                         <div className="navbar_profile-search">
-                            <i className="fa-solid fa-magnifying-glass"></i>
+
+                            <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
+                                <div className="input-holder">
+                                    <input
+                                        type="text"
+                                        className="search-input"
+                                        placeholder="Type to search"
+                                        value={searchValue}
+                                        onChange={(e) => setSearchValue(e.target.value)}
+                                    />
+                                    <i onClick={searchToggle} className="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <span className="close" onClick={searchToggle}></span>
+                            </div>
                         </div>
                         <div className="navbar_profile-notification">
                             <i className="fa-regular fa-bell"></i>
                         </div>
                         <div className="navbar_profile_logo" id="dropdown-btn" ref={buttonRef} onClick={toggleDropdown}>
-                            <img src={profile_logo} alt="profile_logo" />
+                            <img src={profile_logo} alt="profile_logo"/>
                             <i className="fa-solid fa-arrow-down"></i>
                         </div>
                         <div ref={dropdownRef} id="dropdown"
                              className="dropdown-menu hidden">
-                            <div className="p-2 px-3">
-                                <span>My Account</span>
+                            <div className="p-2 ">
+                                <i className="fa-solid fa-user"></i>
+                                <span> My Account</span>
                             </div>
                             <div className="p-1">
                                 <button

@@ -27,6 +27,25 @@ font-size: 12px;
     align-items: center;
     text-align: center;
 }
+.MovieAction_row{
+    overflow: hidden;
+    transition: all 0.5s;
+}
+.MovieBox-img{
+    overflow: hidden;
+    border-radius: 15px;
+}
+.MovieBox-img img{
+    transition: .4s ease;
+
+
+}
+.MovieBox-img:hover img{
+    transform: scale(1.1);
+    transition: .4s ease;
+
+
+}
 .MovieDetails{
     padding: 100px 0;
 }
@@ -73,6 +92,7 @@ font-size: 12px;
     justify-content: space-between;
     margin: 100px 0;
 }
+
 .details{
     color: #fff;
     display: flex;
@@ -104,4 +124,16 @@ font-size: 12px;
 
 .SimilarMovies{
     margin-top: 100px;
+}
+
+@media(max-width: 1024px){
+    .MovieContent{
+        flex-direction: column;
+    }
+    .MovieContent iframe, .MovieContent .details {
+        width: 100%;
+    }
+    .MovieContent .details{
+        margin-top: 40px;
+    }
 }
