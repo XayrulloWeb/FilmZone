@@ -204,7 +204,7 @@
     position: absolute;
     top: 64px;
     right: 12px;
-    background-color: #2a2a2a;
+    background-color: #000;
     border: 1px solid #444;
     width: 180px;
     z-index: 10;
@@ -255,6 +255,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    border: 1px solid #fff; 
     background: rgba(255,255,255,0);
     border-radius:6px;
     position: relative;
@@ -458,4 +459,100 @@
 }
 .navbar.scrolled {
     background: black;
+}
+.burger-menu {
+    display: none;
+}
+@media (max-width: 768px) {
+    .navbar_links {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar_links.open {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: black;
+        padding: 1rem;
+    }
+    .navbar_links ul{
+        justify-content: center;
+    }
+    .navbar_profile{
+        gap: 10px;
+    }
+    .navbar_profile-notification{
+        display: none;
+    }
+    .navbar_links > .navbar_profile-search{
+        display: block !important;
+    }
+}
+.navbar_links > .navbar_profile-search{
+    display: none;
+}
+/* Default state */
+
+
+.navbar_links ul {
+    display: flex;
+    list-style: none;
+}
+.burger-menu i{
+    color: #fff;
+    font-size: 22px;
+}
+
+@media (max-width: 768px) {
+    .navbar_links {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar_links.open {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: black;
+        padding: 1rem;
+    }
+    .navbar_links ul{
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .navbar_profile{
+        gap: 10px;
+    }
+    .navbar_profile-notification{
+        display: none;
+    }
+    .navbar_links > .navbar_profile-search{
+        display: block !important;
+    }
+    .navbar_profile > .navbar_profile-search{
+        display: none !important;
+    }
+    .search-wrapper.active {
+        margin-top: 10px;
+    }
+}
+.navbar_logo img{
+    width: 50px;
+}
+.navbar_profile-search > span{
+    color: #fff;
+    font-weight: bold;
 }

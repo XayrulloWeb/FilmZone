@@ -1,6 +1,7 @@
 @import "navbar.css";
 @import 'home.css';
 @import 'movie.css';
+@import 'loader.css';
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 *{
@@ -50,10 +51,11 @@ li{
         padding: 0 20px;
     }
     .slick-arrow {
-        display: none ;
+        display: none !important;
+
     }
     .slick-next {
-        display: none ;
+        display: none !important;
     }
 }
 

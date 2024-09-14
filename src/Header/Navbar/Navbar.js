@@ -78,6 +78,13 @@ function Navbar() {
         };
     }, []);
 
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen((prev) => !prev);
+    };
+
+
     return (
         <div className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container">
@@ -87,7 +94,13 @@ function Navbar() {
                             <img src={logo} alt="logo" />
                         </Link>
                     </div>
-                    <div className="navbar_links">
+                    {/* Burger icon for mobile */}
+                    <div className="burger-menu" onClick={toggleMobileMenu}>
+                        <i  className="fa-solid fa-bars"></i>
+                    </div>
+
+                    {/* Navbar links */}
+                    <div className={`navbar_links ${isMobileMenuOpen ? 'open' : ''}`}>
                         <ul>
                             <li><Link className='navbar_active' to="/">Home</Link></li>
                             <li><Link to='/discover'>Discover</Link></li>
@@ -95,6 +108,27 @@ function Navbar() {
                             <li><Link to='/forum'>Forum</Link></li>
                             <li><Link to='/about'>About</Link></li>
                         </ul>
+                        <div className="navbar_profile-search">
+                           <span>
+                            Search
+
+                           </span>
+
+                            <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
+                                <div className="input-holder">
+
+                                    <input
+                                        type="text"
+                                        className="search-input"
+                                        placeholder="Type to search"
+                                        value={searchValue}
+                                        onChange={(e) => setSearchValue(e.target.value)}
+                                    />
+                                    <i onClick={searchToggle} className="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <span className="close" onClick={searchToggle}></span>
+                            </div>
+                        </div>
                     </div>
                     <div className="navbar_profile">
                         <div className="navbar_profile-search">

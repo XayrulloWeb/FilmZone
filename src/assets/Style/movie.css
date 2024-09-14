@@ -28,7 +28,6 @@ font-size: 12px;
     text-align: center;
 }
 .MovieAction_row{
-    overflow: hidden;
     transition: all 0.5s;
 }
 .MovieBox-img{
