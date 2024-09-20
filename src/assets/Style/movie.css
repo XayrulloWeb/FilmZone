@@ -33,6 +33,7 @@ font-size: 12px;
 .MovieBox-img{
     overflow: hidden;
     border-radius: 15px;
+    margin: 0 5px;
 }
 .MovieBox-img img{
     transition: .4s ease;

@@ -471,6 +471,9 @@
     .burger-menu {
         display: block;
         cursor: pointer;
+        position: absolute;
+        right: 160px;
+        top: 15px;
     }
 
     .navbar_links.open {
@@ -508,9 +511,7 @@
 .burger-menu i{
     color: #fff;
     font-size: 22px;
-    position: absolute;
-    right: 160px;
-    top: 15px;
+   
 }
 
 @media (max-width: 768px) {
@@ -521,6 +522,18 @@
     .burger-menu {
         display: block;
         cursor: pointer;
+        
+    }
+  
+    .search-wrapper.active .input-holder{
+        width: 100%;
+        
+    }
+    .search-wrapper .input-holder {
+        margin: 5px 0;
+    }
+    .search-wrapper.active .close{
+        top: 42px;
     }
 
     .navbar_links.open {
@@ -568,7 +581,19 @@
     .burger-menu {
         display: block;
         cursor: pointer;
+        position: absolute;
+        right: 160px;
+        top: 15px;
       
+    }
+    .search-wrapper .close{
+        top: -345px;
+    }
+    .search-wrapper.active .input-holder{
+        width: 100%;
+    }
+    .search-wrapper.active .close{
+        top: 42px;
     }
 
     .navbar_links.open {
