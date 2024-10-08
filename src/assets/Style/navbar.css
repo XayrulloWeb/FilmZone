@@ -522,6 +522,8 @@
     .burger-menu {
         display: block;
         cursor: pointer;
+        right: 160px;
+        top: 32px
         
     }
   
@@ -572,6 +574,25 @@
     color: #fff;
     font-weight: bold;
 }
+@media (max-width: 415px){
+    .navbar_links {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        cursor: pointer;
+    }
+    .navbar_links.open {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: black;
+        padding: 1rem;
+    }
+}
 
 @media (max-width: 425px) {
     .navbar_links {
@@ -582,10 +603,11 @@
         display: block;
         cursor: pointer;
         position: absolute;
-        right: 160px;
-        top: 15px;
+        right: 100px;
+        top: 32px;
       
     }
+
     .search-wrapper .close{
         top: -345px;
     }

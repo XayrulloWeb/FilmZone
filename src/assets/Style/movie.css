@@ -47,7 +47,7 @@ font-size: 12px;
 
 }
 .MovieDetails{
-    padding: 100px 0;
+    padding:0 0 100px 0;
 }
 .MovieDetails >  .slick-prev,.slick-next{
     width: 38px; /* Reduced size */
@@ -136,4 +136,11 @@ font-size: 12px;
     .MovieContent .details{
         margin-top: 40px;
     }
+}
+.MovieDetails_banner{
+    height: 100vh;
+    border-image: fill 0 linear-gradient(#0001, #000);
+    overflow: hidden;
+    background-attachment: fixed;
+    margin-bottom: 30px;
 }

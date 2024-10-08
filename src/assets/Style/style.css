@@ -1,7 +1,12 @@
 @import "navbar.css";
 @import 'home.css';
 @import 'movie.css';
+@import "search.css";
+@import "watchlist.css";
+
+@import 'login.css';
 @import 'loader.css';
+@import  'Footer.css';
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 *{

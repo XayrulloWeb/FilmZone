@@ -3,7 +3,48 @@ import { useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
 import {useHistory} from "react-router-dom";
+import MovieDetailsBanner from "./MovieDetails/MovieDetailsBanner";
+import MovieDetailsCastSlider from "./MovieDetails/MovieDetailsCastSlider";
+import MovieDetailsInfo from "./MovieDetails/MovieDetailsInfo";
+import SimilarMovieSlider from "./MovieDetails/SimilarMovieSlider";
+import Loader from "../../Components/Loader/Loader"; // Assuming you have a Loader component
 function MovieDetails() {
+    const handleDownload = () => {
+        if (video) {
+            // Скачиваем трейлер, если он доступен
+            const link = document.createElement('a');
+            link.href = video; // Используем видео URL (например, YouTube)
+            link.download = `${movieDetails.title}-trailer.mp4`; // Это предложит скачать как файл
+            link.click();
+        } else {
+            alert('Видео для скачивания недоступно.');
+        }
+    };
+
+    const handleShare = () => {
+        if (navigator.share) {
+            navigator.share({
+                title: movieDetails.title,
+                text: `Посмотри этот фильм: ${movieDetails.title}`,
+                url: window.location.href // Текущий URL страницы
+            }).then(() => console.log('Успешно поделились!'))
+                .catch(err => console.error('Ошибка при попытке поделиться: ', err));
+        } else {
+            alert('Функция поделиться недоступна на этом устройстве.');
+        }
+    };
+
+    const [liked, setLiked] = useState(false);
+
+    const handleLike = () => {
+        setLiked(!liked);
+        if (!liked) {
+            // Можно сохранить "лайк" в localStorage или отправить запрос на сервер
+            localStorage.setItem(`${movieDetails.id}-liked`, true);
+        } else {
+            localStorage.removeItem(`${movieDetails.id}-liked`);
+        }
+    };
     const settings = {
         dots: true,
         infinite: false,
@@ -186,89 +227,38 @@ function MovieDetails() {
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
+    const [loading, setLoading] = useState(true);
 
-    if (!movieDetails) return <div>Загрузка...</div>;
+    useEffect(() => {
+        // Simulate a network request
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+    }, []);
+
+
+    if (loading) {
+        return <Loader />;  // Show loader while the app is loading
+    }
 
     return (
         <div className="MovieDetails">
+            <MovieDetailsBanner
+                movieDetails={movieDetails}
+                handleDownload={handleDownload}
+                handleShare={handleShare}
+                handleLike={handleLike}
+                liked={liked}
+            />
             <div className="container">
-                <div className="MovieDetails_start">
-
-                    <div className="MovieActyors">
-                        <h4 className='MovieText'>Главные актёры</h4>
-                        <ul>
-                            <Slider {...settings2}>
-                                {cast.map(actor => (
-                                    <li key={actor.cast_id}>
-                                        <div className="MovieActyors-content">
-                                            {actor.profile_path ? (
-                                                <img
-                                                    src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                                                    alt={actor.name}
-                                                />
-                                            ) : (
-                                                <div style={{}}></div>
-                                            )}
-                                            <div className="MovieActyors-name">
-                                                <p>{actor.name}</p>
-                                                <span>{actor.character}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </Slider>
-                        </ul>
-                    </div>
-                    <div className="MovieContent">
-                        {video ? (
-                            <iframe  height="315" src={video} title="Трейлер фильма" frameBorder="0"
-                                     allowFullScreen></iframe>
-                        ) : (
-                            <p>Трейлер отсутствует</p>
-                        )}
-                        <div className="details">
-                            <h1 className='MovieText'>{movieDetails.title}</h1>
-                            <div className="ratings">
-                                <span className="rating">{movieDetails.vote_average}
-                                    <i className="fa-brands fa-imdb"></i></span>
-                                <span className="age">{movieDetails.adult ? "18+" : "PG-13"}</span>
-                            </div>
-                            <p><strong>Год:</strong> {movieDetails.release_date.split('-')[0]}</p>
-                            <p><strong>Страна:</strong> {movieDetails.production_countries.map(country => country.name).join(', ')}</p>
-                            <p><strong>Жанр:</strong> {movieDetails.genres.map(genre => genre.name).join(', ')}</p>
-                            <p><strong>Описание:</strong> {movieDetails.overview}</p>
-                            <p><strong>Актёры:</strong> {cast.map(actor => actor.name).join(', ')}</p>
-                        </div>
-                    </div>
-
-                    {/* Similar Movies Section */}
-                    <div className="SimilarMovies">
-                        <h4 className='MovieText'>Похожие фильмы</h4>
-                        <Slider {...settings}>
-                            {similarMovies.map(movie => (
-                                <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
-                                    <div className="MovieBox-img">
-                                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                             alt={movie.title}/>
-                                    </div>
-                                    <div className="MovieBox-name">
-                                        <h3>{movie.title}</h3>
-                                        <div className="MovieBox-about">
-                                            <div className="MovieBox-rating">
-                                                <img src={rating} alt="rating"/>
-                                                <p>{movie.vote_average}</p>
-                                            </div>
-                                            <div className="MovieBox-category">
-                                                <p>| {getGenres(movie.genre_ids)}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </Slider>
-                    </div>
-
-                </div>
+                <MovieDetailsCastSlider cast={cast} settings={settings2}/>
+                <MovieDetailsInfo movieDetails={movieDetails} video={video} cast={cast}/>
+                <SimilarMovieSlider
+                    similarMovies={similarMovies}
+                    settings={settings}
+                    handleMovieClick={handleMovieClick}
+                    getGenres={getGenres}
+                />
             </div>
         </div>
     );

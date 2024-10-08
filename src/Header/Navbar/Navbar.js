@@ -132,6 +132,7 @@ function Navbar() {
                     </div>
                     <div className="navbar_profile">
                         <div className="navbar_profile-search">
+                            
 
                             <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
                                 <div className="input-holder">
@@ -148,7 +149,9 @@ function Navbar() {
                             </div>
                         </div>
                         <div className="navbar_profile-notification">
-                            <i className="fa-regular fa-bell"></i>
+                            <Link to="/watchlist">                            <i className="fa-regular fa-bell"></i>
+                            </Link>
+
                         </div>
                         <div className="navbar_profile_logo" id="dropdown-btn" ref={buttonRef} onClick={toggleDropdown}>
                             <img src={profile_logo} alt="profile_logo"/>
