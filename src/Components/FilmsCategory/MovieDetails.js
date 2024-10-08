@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Slider from "react-slick";
-import rating from "../../assets/Logo's/Rating.png";
 import {useHistory} from "react-router-dom";
 import MovieDetailsBanner from "./MovieDetails/MovieDetailsBanner";
 import MovieDetailsCastSlider from "./MovieDetails/MovieDetailsCastSlider";

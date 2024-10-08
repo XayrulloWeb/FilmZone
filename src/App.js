@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from "./Header/Navbar/Navbar";
 import { Switch, Route } from 'react-router-dom'; // Using Switch for React Router v5
-import Footer from "./Header/Footer/Footer";
 import routes from "./routes";
 import '../src/assets/Style/style.css';
 import Loader from "./Components/Loader/Loader"; // Assuming you have a Loader component
@@ -36,7 +35,6 @@ function App() {
                         ))}
                     </Switch>
                 </div>
-                <Footer />
             </div>
         </div>
     );
