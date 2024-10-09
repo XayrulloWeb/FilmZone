@@ -231,7 +231,7 @@ function MovieDetails() {
         // Simulate a network request
         setTimeout(() => {
             setLoading(false);
-        }, 3000);
+        }, 1000);
     }, []);
 
 

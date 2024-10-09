@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from "./Header/Navbar/Navbar";
 import { Switch, Route } from 'react-router-dom'; // Using Switch for React Router v5
 import routes from "./routes";
+
 import '../src/assets/Style/style.css';
 import Loader from "./Components/Loader/Loader"; // Assuming you have a Loader component
 
@@ -12,7 +13,7 @@ function App() {
         // Simulate a network request
         setTimeout(() => {
             setLoading(false);
-        }, 3000);
+        }, 1000);
     }, []);
 
     if (loading) {

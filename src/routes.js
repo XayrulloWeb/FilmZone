@@ -1,7 +1,7 @@
 import Home from './Pages/Home/Home';
 import Discover from "./Pages/Discover/discover";
 import MovieDetails from "./Components/FilmsCategory/MovieDetails";
-import login from "./Pages/login/login";
+import login from "./Pages/Login/login";
 import WatchListMode from "./Components/WatchList/WatchListMode";
 
 const routes = [
