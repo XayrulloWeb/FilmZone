@@ -46,7 +46,7 @@ function Navbar() {
             document.removeEventListener("click", handleClickOutside);
         }
         return () => document.removeEventListener("click", handleClickOutside);
-    }, [isOpen]);
+    }, [handleClickOutside]);
 
     // Handle Search Toggle
     const searchToggle = (evt) => {
