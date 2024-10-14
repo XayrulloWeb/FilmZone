@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 
 function Login(props) {
@@ -16,9 +17,10 @@ function Login(props) {
                 <input type="password" className="login-password" required="true" placeholder="Password"/>
                 <input type="submit" name="Login" value="Login" className="login-submit"/>
             </form>
-            <a href="#" className="login-forgot-pass">forgot password?</a>
+            <Link to='/' className="login-forgot-pass">forgot password?</Link>
             <div className="underlay-photo"></div>
             <div className="underlay-black"></div>
+
         </div>
 
 
