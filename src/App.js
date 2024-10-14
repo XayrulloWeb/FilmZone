@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from "./Header/Navbar/Navbar";
-import { Switch, Route } from 'react-router-dom'; // Using Switch for React Router v5
+import { Switch, Route,useLocation  } from 'react-router-dom'; // Using Switch for React Router v5
 import routes from "./routes";
 
 import '../src/assets/Style/style.css';
@@ -8,7 +8,7 @@ import Loader from "./Components/Loader/Loader"; // Assuming you have a Loader c
 
 function App() {
     const [loading, setLoading] = useState(true);
-
+    const location = useLocation();
     useEffect(() => {
         // Simulate a network request
         setTimeout(() => {
@@ -23,7 +23,7 @@ function App() {
     return (
         <div className="App">
             <div className="wrapper">
-                <Navbar />
+                {location.pathname !== '/login' && <Navbar />}
                 <div className="routes">
                     <Switch>
                         {routes.map(item => (

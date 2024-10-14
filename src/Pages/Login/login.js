@@ -3,37 +3,25 @@ import React from 'react';
 
 function Login(props) {
     return (
-        
+
         <div className='login-page'>
-        <div class="card">
-        <h2>Login Form</h2>
-        
-        
-        <div class="login_register">
-        <a href="#" class="login" target="blank">Login</a>
-        <a href="#" class="register" target="blank">Signup</a>
+            <form className="login-form">
+                <p className="login-text">
+    <span className="fa-stack fa-lg">
+      <i className="fa fa-circle fa-stack-2x"></i>
+      <i className="fa fa-lock fa-stack-1x"></i>
+    </span>
+                </p>
+                <input type="email" className="login-username" autoFocus="true" required="true" placeholder="Email"/>
+                <input type="password" className="login-password" required="true" placeholder="Password"/>
+                <input type="submit" name="Login" value="Login" className="login-submit"/>
+            </form>
+            <a href="#" className="login-forgot-pass">forgot password?</a>
+            <div className="underlay-photo"></div>
+            <div className="underlay-black"></div>
         </div>
-        
-        <form class="form">
-        <input type="email" placeholder="Email Adress" class="email"></input>
-        <input type="password" placeholder="password" class="pass"></input>
-        </form>
-        
-        
-        <a href="#" class="fp">Forgot password?</a>
-        
-        
-        <button type="button" class="login_btn">Login</button>
-        
-        
-        <div class="footer_card">
-        <p>Not a member?</p>
-        <a href="#">Singup now</a>
-        </div>
-        </div>
-        </div>
-        
-        
+
+
     );
 }
 
