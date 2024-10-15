@@ -6,7 +6,7 @@ function Home(props) {
     return (
         <div className='home'>
             <div className="navbar_back">
-                <Banner />
+                <Banner movieId={1}/>
 
             </div>
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import logo from "../../assets/Logo's/logoSite.png";
 import profile_logo from "../../assets/Logo's/profile_logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Navbar() {
+    const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const buttonRef = useRef(null);
@@ -46,7 +47,7 @@ function Navbar() {
             document.removeEventListener("click", handleClickOutside);
         }
         return () => document.removeEventListener("click", handleClickOutside);
-    }, [handleClickOutside]);
+    }, [isOpen]); // Используйте isOpen в зависимостях
 
     // Handle Search Toggle
     const searchToggle = (evt) => {
@@ -56,6 +57,39 @@ function Navbar() {
         } else if (!evt.target.closest('.input-holder')) {
             setIsActive(false);
             setSearchValue('');
+        }
+    };
+
+    const [data, setData] = useState([]); // Данные из API
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375');
+                const result = await response.json();
+                console.log(result); // Посмотрите структуру данных в консоли
+                setData(result.results);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    // Фильтруем данные на основе поискового запроса
+    const filteredData = data.filter(item =>
+        item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Функция для обработки поиска и редиректа
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        if (searchTerm) {
+            history.push({
+                pathname: '/search-results',
+                state: { searchTerm, results: filteredData },
+            });
         }
     };
 
@@ -75,7 +109,7 @@ function Navbar() {
                 <div className="navbar_start">
                     <div className="navbar_logo">
                         <Link to="/">
-                            <img src={logo} alt="logo" />
+                            <img src={logo} alt="logo"/>
                         </Link>
                     </div>
                     <div className="burger-menu" onClick={toggleMobileMenu}>
@@ -89,57 +123,44 @@ function Navbar() {
                             <li><Link to='/forum'>Forum</Link></li>
                             <li><Link to='/about'>About</Link></li>
                         </ul>
-                        <div className="navbar_profile-search">
-                            <span>Search</span>
-                            <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
-                                <div className="input-holder">
-                                    <input
-                                        type="text"
-                                        className="search-input"
-                                        placeholder="Type to search"
-                                        value={searchValue}
-                                        onChange={(e) => setSearchValue(e.target.value)}
-                                    />
-                                    <i onClick={searchToggle} className="fa-solid fa-magnifying-glass"></i>
+                        <div className="navbar_profile">
+                            <form onSubmit={handleSearchSubmit}>
+                                <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
+                                    <div className="input-holder">
+                                        <input
+                                            type="text"
+                                            className="search-input"
+                                            placeholder="Type to search"
+                                            value={searchTerm}
+                                            onChange={(e) => setSearchTerm(e.target.value)}
+                                        />
+                                        <i onClick={handleSearchSubmit} className="fa-solid fa-magnifying-glass"></i>
+                                    </div>
                                 </div>
-                                <span className="close" onClick={searchToggle}></span>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <div className="navbar_profile">
-                        <div className="navbar_profile-search">
-                            <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
-                                <div className="input-holder">
-                                    <input
-                                        type="text"
-                                        className="search-input"
-                                        placeholder="Type to search"
-                                        value={searchValue}
-                                        onChange={(e) => setSearchValue(e.target.value)}
-                                    />
-                                    <i onClick={searchToggle} className="fa-solid fa-magnifying-glass"></i>
-                                </div>
-                                <span className="close" onClick={searchToggle}></span>
-                            </div>
+                    <div className="navbar_profile-notification">
+                        <Link to="/watchlist">
+                            <i className="fa-regular fa-bell"></i>
+                        </Link>
+                    </div>
+                    <div className="navbar_profile_logo" ref={buttonRef} onClick={toggleDropdown}>
+                        <img src={profile_logo} alt="profile_logo"/>
+                        <i className="fa-solid fa-arrow-down"></i>
+                    </div>
+                    <div ref={dropdownRef} className="dropdown-menu hidden">
+                        <div className="p-2"><i className="fa-solid fa-user"></i> <span>My Account</span></div>
+                        <div className="p-1">
+                            <button className="dropdown-item">Profile</button>
+                            <button className="dropdown-item">Dashboard</button>
+                            <button className="dropdown-item">Settings</button>
                         </div>
-                        <div className="navbar_profile-notification">
-                            <Link to="/watchlist">
-                                <i className="fa-regular fa-bell"></i>
-                            </Link>
+                        <div className="p-1">
+                            <button className="dropdown-item">Github</button>
                         </div>
-                        <div className="navbar_profile_logo" ref={buttonRef} onClick={toggleDropdown}>
-                            <img src={profile_logo} alt="profile_logo" />
-                            <i className="fa-solid fa-arrow-down"></i>
-                        </div>
-                        <div ref={dropdownRef} className="dropdown-menu hidden">
-                            <div className="p-2"><i className="fa-solid fa-user"></i> <span>My Account</span></div>
-                            <div className="p-1">
-                                <button className="dropdown-item">Profile</button>
-                                <button className="dropdown-item">Dashboard</button>
-                                <button className="dropdown-item">Settings</button>
-                            </div>
-                            <div className="p-1"><button className="dropdown-item">Github</button></div>
-                            <div className="p-1"><button className="dropdown-item">Sign Out</button></div>
+                        <div className="p-1">
+                            <button className="dropdown-item">Sign Out</button>
                         </div>
                     </div>
                 </div>

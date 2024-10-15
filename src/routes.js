@@ -3,7 +3,7 @@ import Discover from "./Pages/Discover/discover";
 import MovieDetails from "./Components/FilmsCategory/MovieDetails";
 import login from "./Pages/Login/login";
 import WatchListMode from "./Components/WatchList/WatchListMode";
-
+import search from "./Components/search component/search";
 const routes = [
     {
         id:1,
@@ -29,6 +29,11 @@ const routes = [
         id: 5,
         path: '/watchlist',
         component: WatchListMode, // Маршрут для WatchlistPage
+    },
+    {
+        id: 6,
+        path: '/search',
+        component: search, // Маршрут для WatchlistPage
     },
 ]
 export default routes;

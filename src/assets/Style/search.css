@@ -31,23 +31,27 @@ u-float-right {
 }
 
 .card {
-    background-color: #fff;
+    background: url(https://image.tmdb.org/t/p/w500${movie.backdrop_path});
     border-radius: 2px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
     margin-bottom: 65px;
-    width: 100%;
+    width: 15%;
+    border-image: fill 0 linear-gradient(#0001, #000);
+}
+.card-body-heading{
+    margin-top: 15px;
+}
+.card-media {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.card-media {
-    float: left;
-    padding: 0 0 25px 25px;
-    position: relative;
-    width: 145px;
-}
 
 .card-media-img {
     box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-    float: left;
+    float: right;
     margin-top: -25px;
     width: 100px;
     position: relative;
@@ -62,7 +66,7 @@ u-float-right {
     height: 30px;
     opacity: 0;
     position: absolute;
-    left: 70px;
+    left: 110px;
     transform: translateY(5px);
     transition: all 300ms ease-out;
     width: 30px;
@@ -104,9 +108,9 @@ u-float-right {
 }
 
 .card-body {
-    float: left;
+    float: right;
     padding: 25px 25px 25px 20px;
-    width: 415px;
+    width: 100%;
 }
 
 .card-body-heading {
@@ -119,12 +123,7 @@ u-float-right {
     float: right;
 }
 
-.card-body-option {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    margin-left: 5px;
-}
+
 
 .card-body-stars {
     list-style-type: none;
@@ -135,7 +134,7 @@ u-float-right {
 .card-body-stars > li {
     cursor: pointer;
     display: inline-block;
-    float: left;
+    width: 30%
 }
 
 .card-button {
@@ -201,3 +200,9 @@ u-float-right {
     width: 100%;
     padding-top: 200px;
 }
+.watchlist-page  ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
