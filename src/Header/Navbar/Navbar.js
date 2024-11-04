@@ -65,18 +65,20 @@ function Navbar() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375');
-                const result = await response.json();
-                console.log(result); // Посмотрите структуру данных в консоли
-                setData(result.results);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+            if (searchTerm) {
+                try {
+                    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&query=${encodeURIComponent(searchTerm)}`);
+                    const result = await response.json();
+                    setData(result.results);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
             }
         };
 
         fetchData();
-    }, []);
+    }, [searchTerm]);
+
     // Фильтруем данные на основе поискового запроса
     const filteredData = data.filter(item =>
         item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -123,23 +125,23 @@ function Navbar() {
                             <li><Link to='/forum'>Forum</Link></li>
                             <li><Link to='/about'>About</Link></li>
                         </ul>
-                        <div className="navbar_profile">
-                            <form onSubmit={handleSearchSubmit}>
-                                <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
-                                    <div className="input-holder">
-                                        <input
-                                            type="text"
-                                            className="search-input"
-                                            placeholder="Type to search"
-                                            value={searchTerm}
-                                            onChange={(e) => setSearchTerm(e.target.value)}
-                                        />
-                                        <i onClick={handleSearchSubmit} className="fa-solid fa-magnifying-glass"></i>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+
                     </div>
+                    <div className="navbar_profile">
+                        <form onSubmit={handleSearchSubmit}>
+                            <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
+                                <div className="input-holder">
+                                    <input
+                                        type="text"
+                                        className="search-input"
+                                        placeholder="Type to search"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                    />
+                                    <i onClick={handleSearchSubmit} className="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </form>
                     <div className="navbar_profile-notification">
                         <Link to="/watchlist">
                             <i className="fa-regular fa-bell"></i>
@@ -163,6 +165,8 @@ function Navbar() {
                             <button className="dropdown-item">Sign Out</button>
                         </div>
                     </div>
+                    </div>
+
                 </div>
             </div>
         </div>

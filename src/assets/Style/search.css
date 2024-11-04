@@ -206,3 +206,7 @@ u-float-right {
     gap: 30px;
 }
 
+.MovieAction_start{
+    background: #000;
+    padding-top: 10vh;
+}
