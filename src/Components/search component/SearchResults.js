@@ -91,7 +91,7 @@ const SearchResults = () => {
     };
 
     return (
-        <div className='MovieAction_start'>
+        <div className='MovieAction_start pt-20   ' >
             <div className="container">
                 <div className="MovieAction_text">
                     <h2 className='MovieText'>Search Movies for you</h2>
