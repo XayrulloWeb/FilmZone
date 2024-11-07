@@ -67,9 +67,15 @@ function Navbar() {
         const fetchData = async () => {
             if (searchTerm) {
                 try {
-                    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&query=${encodeURIComponent(searchTerm)}`);
+                    const query = encodeURIComponent(searchTerm); // Кодируем строку запроса
+                    console.log('Encoded Query:', query); // Логируем закодированный запрос
+
+                    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&query=${query}`);
                     const result = await response.json();
-                    setData(result.results);
+                    console.log('API Result:', result); // Логируем результат от API
+
+                    const sortedResults = result.results.sort((a, b) => b.popularity - a.popularity);
+                    setData(sortedResults);
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
@@ -79,25 +85,29 @@ function Navbar() {
         fetchData();
     }, [searchTerm]);
 
-    // Фильтруем данные на основе поискового запроса
-    const filteredData = data.filter(item =>
-        item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+// Логируем данные перед фильтрацией
+    const filteredData = data.filter(item => {
+        const titleLowerCase = item.title ? item.title.toLowerCase() : '';
+        const searchTermLowerCase = searchTerm.toLowerCase();
+        console.log('Filtering:', titleLowerCase, searchTermLowerCase); // Логируем процесс фильтрации
+
+        return titleLowerCase.includes(searchTermLowerCase);
+    });
+
 
     // Функция для обработки поиска и редиректа
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {
-            history.push({
-                pathname: '/search-results',
-                state: { searchTerm, results: filteredData },
-            });
+            // Используйте `data` или `filteredData`, в зависимости от ваших предпочтений
+            history.push('/search-results', { results: filteredData, searchQuery: searchTerm });
         }
     };
 
+
     // Handle Scroll Event for Navbar
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 300);
+        const handleScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);

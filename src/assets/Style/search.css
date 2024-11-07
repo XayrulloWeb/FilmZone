@@ -209,3 +209,43 @@ u-float-right {
 .MovieAction_start{
     background: #000;
 }
+.MovieBox-search{
+    margin-bottom: 50px;
+
+    flex: 1 1 16.666%;
+}
+.movieAction-search{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+.MovieAction_text span{
+    margin-left: 5px;
+}
+@media (max-width: 1600px) {
+    .MovieBox-search {
+        flex: 1 1 22%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .MovieBox-search {
+        flex: 1 1 31%;
+    }
+}
+
+@media (max-width: 768px) {
+    .MovieBox-search {
+        flex: 1 1 33%;
+    }
+}
+@media (max-width: 576px) {
+    .MovieBox-search {
+        flex: 1 1 50%;
+    }
+}
+.mevieBox-img-search{
+    width: 100%;
+    height: auto;
+}

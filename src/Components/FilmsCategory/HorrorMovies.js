@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
 import {useHistory} from "react-router-dom";
 
 function HorrorMovies(props) {
+    const sliderRef = useRef();
     const genreMap = {
         28: 'Action',
         12: 'Adventure',
@@ -122,6 +123,7 @@ function HorrorMovies(props) {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
 
+
     return (
         <div>
             <div className="MovieAction_start">
@@ -129,7 +131,7 @@ function HorrorMovies(props) {
                     <h2 className='MovieText'>Horror Movies for you</h2>
                 </div>
                 <div className="MovieAction_row">
-                    <Slider {...settings}>
+                    <Slider  {...settings}>
                         {
                             horrorMovies.map(movie => {
                                 return (

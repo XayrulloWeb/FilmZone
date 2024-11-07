@@ -10,12 +10,15 @@
     height: 300px;
     margin-bottom: 12px;
     margin-top: 24px;
+
 }
 .MovieBox-img img{
     width: 100%;
     height: 100%;
     border-radius: 16px;
     object-fit: cover;
+    max-height: 500px;
+    max-width: 300px;
 }
 .MovieBox-name h3{
     margin: 10px;

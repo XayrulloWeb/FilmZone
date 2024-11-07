@@ -5,7 +5,7 @@ import rating from "../../assets/Logo's/Rating.png";
 
 const SearchResults = () => {
     const location = useLocation();
-    const { results } = location.state || [];
+    const { results,searchQuery  } = location.state || [];
     const history = useHistory();
 
     const handleMovieClick = (id) => {
@@ -14,94 +14,18 @@ const SearchResults = () => {
 
     console.log(results);
 
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 5.4,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 1600,
-                settings: {
-                    slidesToShow: 4.7,
-                    slidesToScroll: 3,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 1400,
-                settings: {
-                    slidesToShow: 4.3,
-                    slidesToScroll: 2,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 1240,
-                settings: {
-                    slidesToShow: 3.4,
-                    slidesToScroll: 1,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2.3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 700,
-                settings: {
-                    slidesToShow: 2.1,
-                    slidesToScroll: 1,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 1.8,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 430,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    dots: true
-                }
-            }
-        ]
-    };
 
     return (
-        <div className='MovieAction_start pt-20   ' >
+        <div className='MovieAction_start pt-32   ' >
             <div className="container">
                 <div className="MovieAction_text">
-                    <h2 className='MovieText'>Search Movies for you</h2>
+                    <h2 className='MovieText'>Результаты поиска по запросу <span>"{searchQuery}"</span> </h2>
                 </div>
-                <div className="MovieAction_row">
-                    <Slider {...settings}>
+                <div className="MovieAction_row movieAction-search">
                         {results && results.length > 0 ? (
                             results.map((movie) => (
-                                <div className='MovieBox' key={movie.id} onClick={() => handleMovieClick(movie.id)} key={movie.id}>
-                                    <div className="MovieBox-img">
+                                <div className='MovieBox MovieBox-search'  onClick={() => handleMovieClick(movie.id)} key={movie.id}>
+                                    <div className="MovieBox-img mevieBox-img-search">
                                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                              alt={movie.title}/>
                                     </div>
@@ -122,7 +46,6 @@ const SearchResults = () => {
                         ) : (
                             <p>No results found.</p>
                         )}
-                    </Slider>
                 </div>
             </div>
         </div>
