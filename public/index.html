@@ -18,5 +18,33 @@
   <body>
     <div id="root"></div>
     <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    function toggleDropdownlang() {
+      document.getElementById("dropdown-lang").classList.toggle("show");
+    }
+
+    function selectLanguage(language) {
+      // Update the selected language display (you could add more logic here for actual language switching)
+      document.querySelector(".selected-language").innerText = language;
+
+      // Hide the dropdown after selection
+      document.getElementById("dropdown").classList.remove("show");
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.selected-language')) {
+        let dropdowns = document.getElementsByClassName("dropdown-lang");
+        for (let i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    };
+
+  </script>
   </body>
 </html>

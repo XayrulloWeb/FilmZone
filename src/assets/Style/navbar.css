@@ -54,6 +54,10 @@
     color: #fff;
     line-height: normal;
     font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 .navbar_active{
     font-size: 16px;
