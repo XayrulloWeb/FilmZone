@@ -6,7 +6,6 @@
     width: 250px;
 }
 .MovieBox-img {
-    width: 250px;
     height: 300px;
     margin-bottom: 12px;
     margin-top: 24px;
@@ -17,13 +16,11 @@
     height: 100%;
     border-radius: 16px;
     object-fit: cover;
-    max-height: 500px;
-    max-width: 300px;
+
 }
 .MovieBox-name h3{
     margin: 10px;
     color: var(--color-main);
-    margin-bottom: 10px;
     font-weight: bold;
     width: 250px;
 }
@@ -70,7 +67,6 @@
     cursor: pointer;
     position: absolute;
     top: 45%;
-    z-index: 99;
     color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
@@ -104,21 +100,3 @@
     overflow: hidden;
 }
 
-@media(max-width: 1000px) {
-    .MovieBox-img {
-        width: 220px;
-        height: 300px;
-    }
-}
-@media (max-width: 600px) {
-    .MovieBox-img {
-        width: 200px;
-        height: 250px;
-    }
-}
-@media(max-width: 426px){
-    .MovieBox-img {
-        width: 100% !important;
-
-    }
-}

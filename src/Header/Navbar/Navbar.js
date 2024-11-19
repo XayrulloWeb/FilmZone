@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/Logo's/logoSite.png";
 import profile_logo from "../../assets/Logo's/profile_logo.png";
 import { FlagIcon } from "react-flag-kit";
-import "../../Lang/i18n"; // Make sure your i18n initialization is correct
+import "../../Lang/i18n";
+import NavbarMobile from "./NavbarMobile"; // Make sure your i18n initialization is correct
 
 function Navbar() {
     const { t, i18n } = useTranslation();
@@ -168,10 +169,10 @@ function Navbar() {
                                         English
                                     </button>
 
-                                    <div className="language-option" onClick={() => changeLanguage('uz')}>
+                                    <button className="language-option" onClick={() => changeLanguage('uz')}>
                                         <FlagIcon code="UZ" size={24}/>
                                         Uzbek
-                                    </div>
+                                    </button>
                                 </div>
                             )}
                         </div>
@@ -221,6 +222,7 @@ function Navbar() {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

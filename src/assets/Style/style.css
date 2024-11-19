@@ -5,6 +5,7 @@
 @import "watchlist.css";
 @import 'login.css';
 @import 'loader.css';
+@import 'mobile.css';
 @import  'Footer.css';
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
@@ -126,11 +127,15 @@ li{
     gap: 8px;
     cursor: pointer;
     width: 100%;
+    color: var(--color-main);
+    background: #0f0f12;
+    border: none;
     transition: background-color 0.2s;
 }
 
 .language-option:hover {
-    background-color: #444;
+    background-color: var(--back-main);
+    color: var(--color-main);
 }
 .language-switcher .dropdown-lang.show {
     display: block;
@@ -148,5 +153,5 @@ li{
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     color: hsla(0, 0%, 100%, .7);
-
 }
+
