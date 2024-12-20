@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
 import {useHistory} from "react-router-dom";
 
-function HorrorMovies(props) {
+function FantasyMovies(props) {
     const genreMap = {
         28: 'Action',
         12: 'Adventure',
@@ -70,6 +70,7 @@ function HorrorMovies(props) {
                 settings: {
                     slidesToShow: 2.3,
                     slidesToScroll: 1,
+                    infinite: true,
                     dots: true
                 }
             },
@@ -86,6 +87,7 @@ function HorrorMovies(props) {
                 settings: {
                     slidesToShow: 1.8,
                     slidesToScroll: 1,
+                    infinite: true,
                     dots: true
                 }
             },
@@ -94,13 +96,12 @@ function HorrorMovies(props) {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: true
                 }
             }
         ]
     };
-    const [horrorMovies, setHorrorMovies] = useState([]);
-    console.log(horrorMovies);
+    const [animeMovies, setAnimeMovies] = useState([]);
 
     const history = useHistory();
 
@@ -108,32 +109,30 @@ function HorrorMovies(props) {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
 
-    const getHorrorMovies = () => {
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=27')
+    const getAnimeMovies = () => {
+        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=14')
             .then(res => res.json())
-            .then(json => setHorrorMovies(json.results))
-            .catch(err => console.error("Error fetching horror movies: ", err));
+            .then(json => setAnimeMovies(json.results))
+            .catch(err => console.error("Error fetching anime movies: ", err));
     }
 
     useEffect(() => {
-        getHorrorMovies();
+        getAnimeMovies();
     }, []);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
 
-
     return (
-        <div>
             <div className="MovieAction_start">
                 <div className="MovieAction_text">
-                    <h2 className='MovieText'>Horror Movies for you</h2>
+                    <h2 className='MovieText'>Fantasy Movies for you</h2>
                 </div>
                 <div className="MovieAction_row">
-                    <Slider  {...settings}>
+                    <Slider {...settings}>
                         {
-                            horrorMovies.map(movie => {
+                            animeMovies.map(movie => {
                                 return (
                                     <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
                                         <div className="MovieBox-img">
@@ -159,8 +158,7 @@ function HorrorMovies(props) {
                     </Slider>
                 </div>
             </div>
-        </div>
     );
 }
 
-export default HorrorMovies;
+export default FantasyMovies;

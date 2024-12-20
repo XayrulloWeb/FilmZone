@@ -26,7 +26,7 @@ input {
 
     min-height: 10rem;
     margin: auto;
-    max-width: 50%;
+    max-width: 400px;
     padding: 30px;
     border-radius: 15px;
     border: 1px solid #fff;
@@ -39,7 +39,7 @@ input {
     max-width: 50%;
     padding: .5rem;
     text-align: center;
-//text-shadow: 1px -1px 0 rgba(0,0,0,0.3);
+text-shadow: 1px -1px 0 rgba(0,0,0,0.3);
     .fa-stack-1x {
         color: black;
     }
@@ -63,7 +63,7 @@ input {
 }
 
 .login-forgot-pass {
-//border-bottom: 1px solid white;
+border-bottom: 1px solid white;
     bottom: 0;
     color: white;
     cursor: pointer;
@@ -74,25 +74,25 @@ input {
     padding: .5rem;
     position: absolute;
     text-align: center;
-//text-decoration: none;
+text-decoration: none;
     width: 100%;
     &:hover {
         opacity: 1;
     }
 }
 .login-submit {
-    border: 1px solid white;
-    background: transparent;
-    color: white;
-    display: block;
-    margin: 1rem auto;
-    min-width: 1px;
-    padding: .25rem;
-    transition: 250ms background ease-in;
-    &:hover, &:focus {
-        background: white;
-        color: black;
-        transition: 250ms background ease-in;
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #9b9aa9;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 300;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover {
+        background-color: #e6e6e6;
     }
 }
 
@@ -110,12 +110,17 @@ input {
     animation: hue-rotate 6s infinite;
     background: url('https://wallpaperaccess.com/full/37943.jpg')no-repeat center center fixed;
     background-size: cover;
-    -webkit-filter: grayscale(30%);
+    --webkit-filter: grayscale(30%);
     z-index: -1;
 }
 .underlay-black {
     background: rgba(0,0,0,0.7);
     z-index: -1;
+}
+.reg{
+    text-align: center;
+    margin-top: 20px;
+    color: white;
 }
 
 @keyframes hue-rotate {

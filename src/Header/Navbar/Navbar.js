@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "../../assets/Logo's/logoSite.png";
 import profile_logo from "../../assets/Logo's/profile_logo.png";
 import { Link, useHistory } from "react-router-dom";
+import LogoutButton from "../../Buttons/LogoutButton";
 
 function Navbar() {
     const history = useHistory();
@@ -12,6 +13,9 @@ function Navbar() {
     const [searchValue, setSearchValue] = useState('');
     const [scrolled, setScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // New state for user authentication
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // Change this based on your authentication logic
 
     // Handle Dropdown Menu
     const openDropdown = () => {
@@ -32,7 +36,6 @@ function Navbar() {
         else closeDropdown();
     };
 
-    // Handle clicking outside the dropdown
     const handleClickOutside = (event) => {
         if (isOpen && !buttonRef.current.contains(event.target) && !dropdownRef.current.contains(event.target)) {
             setIsOpen(false);
@@ -47,7 +50,7 @@ function Navbar() {
             document.removeEventListener("click", handleClickOutside);
         }
         return () => document.removeEventListener("click", handleClickOutside);
-    }, [isOpen]); // Используйте isOpen в зависимостях
+    }, [isOpen]);
 
     // Handle Search Toggle
     const searchToggle = (evt) => {
@@ -60,20 +63,16 @@ function Navbar() {
         }
     };
 
-    const [data, setData] = useState([]); // Данные из API
+    const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
             if (searchTerm) {
                 try {
-                    const query = encodeURIComponent(searchTerm); // Кодируем строку запроса
-                    console.log('Encoded Query:', query); // Логируем закодированный запрос
-
+                    const query = encodeURIComponent(searchTerm);
                     const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&query=${query}`);
                     const result = await response.json();
-                    console.log('API Result:', result); // Логируем результат от API
-
                     const sortedResults = result.results.sort((a, b) => b.popularity - a.popularity);
                     setData(sortedResults);
                 } catch (error) {
@@ -85,34 +84,25 @@ function Navbar() {
         fetchData();
     }, [searchTerm]);
 
-// Логируем данные перед фильтрацией
     const filteredData = data.filter(item => {
         const titleLowerCase = item.title ? item.title.toLowerCase() : '';
         const searchTermLowerCase = searchTerm.toLowerCase();
-        console.log('Filtering:', titleLowerCase, searchTermLowerCase); // Логируем процесс фильтрации
-
         return titleLowerCase.includes(searchTermLowerCase);
     });
 
-
-    // Функция для обработки поиска и редиректа
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {
-            // Используйте `data` или `filteredData`, в зависимости от ваших предпочтений
             history.push('/search-results', { results: filteredData, searchQuery: searchTerm });
         }
     };
 
-
-    // Handle Scroll Event for Navbar
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Toggle Mobile Menu
     const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
     return (
@@ -121,7 +111,7 @@ function Navbar() {
                 <div className="navbar_start">
                     <div className="navbar_logo">
                         <Link to="/">
-                            <img src={logo} alt="logo"/>
+                            <img src={logo} alt="logo" />
                         </Link>
                     </div>
                     <div className="burger-menu" onClick={toggleMobileMenu}>
@@ -135,7 +125,6 @@ function Navbar() {
                             <li><Link to='/forum'>Forum</Link></li>
                             <li><Link to='/about'>About</Link></li>
                         </ul>
-
                     </div>
                     <div className="navbar_profile">
                         <form onSubmit={handleSearchSubmit}>
@@ -152,31 +141,35 @@ function Navbar() {
                                 </div>
                             </div>
                         </form>
-                    <div className="navbar_profile-notification">
-                        <Link to="/watchlist">
-                            <i className="fa-regular fa-bell"></i>
-                        </Link>
-                    </div>
-                    <div className="navbar_profile_logo" ref={buttonRef} onClick={toggleDropdown}>
-                        <img src={profile_logo} alt="profile_logo"/>
-                        <i className="fa-solid fa-arrow-down"></i>
-                    </div>
-                    <div ref={dropdownRef} className="dropdown-menu hidden">
-                        <div className="p-2"><i className="fa-solid fa-user"></i> <span>My Account</span></div>
-                        <div className="p-1">
-                            <button className="dropdown-item">Profile</button>
-                            <button className="dropdown-item">Dashboard</button>
-                            <button className="dropdown-item">Settings</button>
+                        <div className="navbar_profile-notification">
+                            <Link to="/watchlist">
+                                <i className="fa-regular fa-bell"></i>
+                            </Link>
                         </div>
-                        <div className="p-1">
-                            <button className="dropdown-item">Github</button>
-                        </div>
-                        <div className="p-1">
-                            <button className="dropdown-item">Sign Out</button>
-                        </div>
-                    </div>
-                    </div>
 
+                        <div className="navbar_profile_logo" ref={buttonRef} onClick={toggleDropdown}>
+                            <img src={profile_logo} alt="profile_logo" />
+                            <i className="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div ref={dropdownRef} className="dropdown-menu hidden">
+                            <div className="p-2"><i className="fa-solid fa-user"></i> <span>My Account</span></div>
+                            <div className="p-1">
+                                {isAuthenticated ? (
+                                    <button className="dropdown-item"><LogoutButton /></button>
+                                ) : (
+                                    <>
+                                        <button className="dropdown-item" onClick={() => history.push('/login')}>Kirish</button>
+                                        <button className="dropdown-item" onClick={() => history.push('/register')}>Ro'yhatdan o'tish</button>
+                                    </>
+                                )}
+                            </div>
+                            {isAuthenticated && (
+                                <div className="p-1">
+                                    <button className="dropdown-item">Github</button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

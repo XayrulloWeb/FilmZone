@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import {useHistory} from "react-router-dom";
+
 
 const WatchListMode = () => {
     const [watchlist, setWatchlist] = useState([]);
+
+
+    const history = useHistory();
+    const handleMovieClick = (id) => {
+     
+        history.push(`/movie/${id}`);  // Используем history.push вместо navigate
+    };
+
 
     useEffect(() => {
         // Get the movie list from localStorage
         const savedWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
         setWatchlist(savedWatchlist);
     }, []);
+
 
     return (
         <div className="watchlist-page">
@@ -39,7 +50,7 @@ const WatchListMode = () => {
                                     <h2 className="card-body-heading">{movie.title}</h2>
                                     <p>{movie.release_date}</p>
                                     <div className="card-media-preview u-flex-center">
-                                        <svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                                        <svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg" onClick={() => handleMovieClick(movie.id)}>
                                             <path d="M8 5v14l11-7z"/>
                                             <path d="M0 0h24v24H0z" fill="none"/>
                                         </svg>
@@ -58,7 +69,7 @@ const WatchListMode = () => {
                                     <a href="#/" className="card-button card-button-cta">
                                         Buy $12.99
                                     </a>
-                                    <a href="#/" className="card-button card-button-link">
+                                    <a href={`/movie/${movie.id}`} className="card-button card-button-link">
                                         More info
                                         <span className="card-button-icon">
                                             <svg fill="#9C948A" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">

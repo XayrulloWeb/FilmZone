@@ -4,6 +4,10 @@
     import login from "./Pages/Login/login";
     import WatchListMode from "./Components/WatchList/WatchListMode";
     import search from "./Components/search component/search";
+    import RegisterPage from './Pages/Register/Register';
+    import Profile from './Accaunts/Profile';
+    import UsersList from './Pages/UserList/Users';
+    import About from './Layout/About/About';
     const routes = [
         {
             id:1,
@@ -35,5 +39,26 @@
             path: '/search',
             component: search, // Маршрут для WatchlistPage
         },
+        {
+            id: 7,
+            path: '/register',
+            component: RegisterPage, // men qo'shgan marshrut
+        },
+        {
+            id: 8,
+            path: '/profile',
+            component: Profile, // men qo'shgan marshrut-2
+        },
+        {
+            id: 9,
+            path: 'users',
+            component: UsersList, // men qo'shgan marshrut-3
+        },
+        {
+            id: 10,
+            path: '/about',
+            component: About,
+        }
+
     ]
     export default routes;
