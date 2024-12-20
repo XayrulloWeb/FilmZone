@@ -1,0 +1,16 @@
+{
+  "welcome": "Дом",
+  "discover": "Открыть",
+  "movieRelease": "Релиз фильмы",
+  "selection": "Подборка",
+  "history": "История",
+  "searchPlaceholder": "Введите запрос",
+  "myAccount": "Мой аккаунт",
+  "profile": "Профиль",
+  "dashboard": "Панель управления",
+  "settings": "Настройки",
+  "github": "Github",
+  "signOut": "Выйти",
+  "english": "English",
+  "russian": "Русский"
+}

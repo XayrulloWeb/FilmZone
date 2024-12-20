@@ -1,0 +1,16 @@
+{
+  "welcome": "Home",
+  "discover": "Discover",
+  "movieRelease": "Movie Release",
+  "forum": "Forum",
+  "history": "History",
+  "searchPlaceholder": "Type to search",
+  "myAccount": "My Account",
+  "profile": "Profile",
+  "dashboard": "Dashboard",
+  "settings": "Settings",
+  "github": "Github",
+  "signOut": "Sign Out",
+  "english": "English",
+  "russian": "Русский"
+}

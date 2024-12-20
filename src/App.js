@@ -7,6 +7,7 @@ import Loader from "./Components/Loader/Loader";
 import axios from 'axios';
 import SearchResults from "./Components/search component/SearchResults";
 import Footer from "./Footer/Footer";
+import NavbarMobile from "./Header/Navbar/NavbarMobile";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -40,6 +41,8 @@ function App() {
                 <Loader /> // Show loader while loading
             ) : (
                 <div className="wrapper">
+                    <NavbarMobile/>
+
                     {location.pathname !== '/login' && <Navbar />}
                     <div className="routes">
                         <Switch>
