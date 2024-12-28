@@ -29,6 +29,7 @@ function FantasyMovies(props) {
         dots: true,
         infinite: false,
         speed: 500,
+        autoplay:true,
         slidesToShow: 5.4,
         slidesToScroll: 1,
         responsive: [

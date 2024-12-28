@@ -1,5 +1,4 @@
 import React from 'react';
-import Slider from "react-slick";
 import {useHistory, useLocation} from 'react-router-dom';
 import rating from "../../assets/Logo's/Rating.png";
 
