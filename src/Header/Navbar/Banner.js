@@ -1,14 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import gsap from 'gsap'; // Импортируйте gsap напрямую
 import Watchlist from "../../Components/WatchList/WatchList";
 
-function Banner({  handleDownload, handleShare, handleLike, liked }) {
+function Banner({ handleDownload, handleShare, handleLike, liked }) {
     const [movie, setMovie] = useState(null);
     const apiKey = 'bc25b198a01dce97d9fbeb1bada0f375';
     const history = useHistory();
 
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);
+    };
+
+    const gsapAnimation = () => {
+        gsap.fromTo(
+            ".banner",
+            { opacity: 0 },
+            { opacity: 1, duration: 1.5, ease: "power2.out" } // Плавное появление фона
+        );
+
+        gsap.fromTo(
+            ".banner_info h1",
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, ease: "power3.out" } // Плавное появление заголовка
+        );
+
+        gsap.fromTo(
+            ".genre span",
+            { opacity: 0, x: -20 },
+            { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" } // Появление жанра
+        );
+
+        gsap.fromTo(
+            ".banner_btns .btn_watch button",
+            { opacity: 0, scale: 0.8 },
+            { opacity: 1, scale: 1, duration: 0.8, ease: "bounce.out", stagger: 0.3 } // Появление кнопок с эффектом увеличения
+        );
+
+        gsap.fromTo(
+            ".banner_links-btns button",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power2.out" } // Анимация кнопок
+        );
     };
 
     useEffect(() => {
@@ -19,20 +52,26 @@ function Banner({  handleDownload, handleShare, handleLike, liked }) {
                 const randomIndex = Math.floor(Math.random() * result.results.length);
                 setMovie(result.results[randomIndex]);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Ошибка при получении данных:', error);
             }
         };
 
         fetchMovie();
     }, []);
 
+    useEffect(() => {
+        if (movie) {
+            gsapAnimation(); // Запуск анимации после получения данных о фильме
+        }
+    }, [movie]); // Запуск анимации, когда состояние movie обновляется
+
     if (!movie) {
-        return <p>Loading...</p>;
+        return <p>Загрузка...</p>;
     }
 
     return (
         <div className='banner' style={{
-            background: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}') no-repeat center center / cover`,
+            background: `url('https://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center / cover`,
             height: '100vh',
             overflow: 'hidden',
             backgroundAttachment: 'fixed',
@@ -51,7 +90,6 @@ function Banner({  handleDownload, handleShare, handleLike, liked }) {
                                     <i className="fa-solid fa-circle-play"></i>
                                     Continue Watching
                                 </button>
-
                                 <Watchlist movieDetails={movie} />
                             </div>
                         </div>

@@ -135,9 +135,7 @@ function Navbar() {
                             <img src={logo} alt="logo" />
                         </Link>
                     </div>
-                    <div className="burger-menu" onClick={toggleMobileMenu}>
-                        <i className="fa-solid fa-bars"></i>
-                    </div>
+
                     <div className={`navbar_links ${isMobileMenuOpen ? "open" : ""}`}>
                         <ul>
                             <li><Link className="navbar_active" to="/"><i className="fa-solid fa-home"></i>{t('welcome')}</Link></li>
