@@ -1,0 +1,34 @@
+{
+  "common": {
+    "welcome": "Bosh sahifa",
+    "discover": "Kashf etish",
+    "movieRelease": "Yangi Filmlar",
+    "selection": "To'plamlar",
+    "history": "Tarix",
+    "searchPlaceholder": "Izlash uchun yozing",
+    "myAccount": "Mening hisobim",
+    "profile": "Profil",
+    "dashboard": "Boshqaruv paneli",
+    "settings": "Sozlamalar",
+    "github": "Github",
+    "signOut": "Chiqish",
+    "english": "Inglizcha",
+    "russian": "Ruscha"
+  },
+  "banner": {
+    "continue": "Ko'rishni davom ettirish",
+    "add_to_watchlist": " Ro'yxatiga qo'shish",
+    "remove_from_watchlist": " Ro'yxatidan o'chirish",
+    "download": "Yuklab olish",
+    "share": "Ulashish",
+    "like": "Yoqqan"
+  },
+  "movietext": {
+    "anime": "Siz uchun anime filmlar",
+    "comedy": "Siz uchun komediya filmlari",
+    "fantasy": "Siz uchun fentezi filmlari",
+    "horror": "Siz uchun dahshat filmlari",
+    "music": "Siz uchun musiqiy filmlar",
+    "war": "Siz uchun urush filmlari"
+  }
+}

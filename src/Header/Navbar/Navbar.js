@@ -138,10 +138,10 @@ function Navbar() {
 
                     <div className={`navbar_links ${isMobileMenuOpen ? "open" : ""}`}>
                         <ul>
-                            <li><Link className="navbar_active" to="/"><i className="fa-solid fa-home"></i>{t('welcome')}</Link></li>
-                            <li><Link to="/discover"><i className="fa-solid fa-layer-group"></i>{t('selection')}</Link></li>
-                            <li><Link to="/movie-release"><i className="fa-solid fa-clock"></i>{t('movieRelease')}</Link></li>
-                            <li><Link to="/about"><i className="fa-solid fa-history"></i>{t('history')}</Link></li>
+                            <li><Link className="navbar_active" to="/"><i className="fa-solid fa-home"></i>{t('common.welcome')}</Link></li>
+                            <li><Link to="/discover"><i className="fa-solid fa-layer-group"></i>{t('common.selection')}</Link></li>
+                            <li><Link to="/movie-release"><i className="fa-solid fa-clock"></i>{t('common.movieRelease')}</Link></li>
+                            <li><Link to="/about"><i className="fa-solid fa-history"></i>{t('common.history')}</Link></li>
                         </ul>
                     </div>
                     <div className="navbar_profile">

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
 import {useHistory} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 function HorrorMovies(props) {
     const genreMap = {
@@ -124,12 +125,12 @@ function HorrorMovies(props) {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
 
-
+    const { t, i18n } = useTranslation();
     return (
         <div>
             <div className="MovieAction_start">
                 <div className="MovieAction_text">
-                    <h2 className='MovieText'>Horror Movies for you</h2>
+                    <h2 className='MovieText'>{t('movietext.horror')}</h2>
                 </div>
                 <div className="MovieAction_row">
                     <Slider  {...settings}>

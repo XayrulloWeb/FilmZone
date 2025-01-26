@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import "../../Lang/i18n";
 
+
 function NavbarMobile(props) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [activeLink, setActiveLink] = useState("/");
 
     // Обработчик для изменения активного элемента
@@ -22,7 +23,7 @@ function NavbarMobile(props) {
                             to="/"
                             onClick={() => handleSetActive("/")}
                         >
-                            <i className="fa-solid fa-home"></i>{t('welcome')}
+                            <i className="fa-solid fa-home"></i>{t('common.welcome')}
                         </Link>
                     </li>
                     <li>
@@ -31,7 +32,7 @@ function NavbarMobile(props) {
                             to="/discover"
                             onClick={() => handleSetActive("/discover")}
                         >
-                            <i className="fa-solid fa-layer-group"></i>{t('selection')}
+                            <i className="fa-solid fa-layer-group"></i>{t('common.selection')}
                         </Link>
                     </li>
                     <li>
@@ -40,7 +41,7 @@ function NavbarMobile(props) {
                             to="/movie-release"
                             onClick={() => handleSetActive("/movie-release")}
                         >
-                            <i className="fa-solid fa-clock"></i>{t('movieRelease')}
+                            <i className="fa-solid fa-clock"></i>{t('common.movieRelease')}
                         </Link>
                     </li>
                     <li>
@@ -49,7 +50,7 @@ function NavbarMobile(props) {
                             to="/about"
                             onClick={() => handleSetActive("/about")}
                         >
-                            <i className="fa-solid fa-history"></i>{t('history')}
+                            <i className="fa-solid fa-history"></i>{t('common.history')}
                         </Link>
                     </li>
 

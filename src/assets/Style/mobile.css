@@ -16,7 +16,7 @@
 .navbar_mobile-links a{
     display: flex
 ;
-    padding: 1rem 1.5rem 1.25rem;
+    padding: 1rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-// Utility function for handling localStorage interactions
+import {useTranslation} from "react-i18next";
 const updateWatchlist = (movieDetails, add) => {
     const existingWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     const isAlreadyInWatchlist = existingWatchlist.some(movie => movie.id === movieDetails.id);
@@ -19,6 +18,7 @@ const updateWatchlist = (movieDetails, add) => {
 
 const Watchlist = ({ movieDetails }) => {
     const [isInWatchlist, setIsInWatchlist] = useState(false);
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         const savedWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
@@ -34,7 +34,7 @@ const Watchlist = ({ movieDetails }) => {
     return (
         <button className="btn-watchlist" onClick={handleWatchlistToggle}>
             <i className={isInWatchlist ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"}></i>
-            {isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+            {isInWatchlist ? t('banner.remove_from_watchlist') : t('banner.add_to_watchlist')} {/* Переводы */}
         </button>
     );
 };

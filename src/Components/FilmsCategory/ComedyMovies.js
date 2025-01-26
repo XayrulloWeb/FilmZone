@@ -2,8 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
+import {useTranslation} from "react-i18next";
 
 function ComedyMovies(props) {
+    const { t, i18n } = useTranslation();
+
     const settings = {
         dots: true,
         infinite: false,
@@ -100,20 +103,23 @@ function ComedyMovies(props) {
         10752: 'War',
         37: 'Western'
     };
-
     const [comedyMovies, setComedyMovies] = useState([]);
     const history = useHistory();
 
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
+    useEffect(() => {
+        getComedyMovies(i18n.language);
+    }, [i18n.language]);
 
-    const getComedyMovies = () => {
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=35')
+    const getComedyMovies = (language) => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=35&language=${language}`)
             .then(res => res.json())
             .then(json => setComedyMovies(json.results))
             .catch(err => console.error("Error fetching comedy movies: ", err));
     }
+
 
     useEffect(() => {
         getComedyMovies();
@@ -124,9 +130,9 @@ function ComedyMovies(props) {
     };
     return (
         <div>
-            <div className="MovieAction_start" style={{marginTop: '50px'}}>
+            <div className="MovieAction_start" >
                 <div className="MovieAction_text">
-                    <h2 className='MovieText'>Comedy Movies for you</h2>
+                    <h2 className='MovieText'>{t('movietext.comedy')}</h2>
                 </div>
                 <div className="MovieAction_row">
                     <Slider {...settings}>

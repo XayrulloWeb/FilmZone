@@ -1,16 +1,35 @@
+
 {
-  "welcome": "Home",
-  "discover": "Discover",
-  "movieRelease": "Movie Release",
-  "forum": "Forum",
-  "history": "History",
-  "searchPlaceholder": "Type to search",
-  "myAccount": "My Account",
-  "profile": "Profile",
-  "dashboard": "Dashboard",
-  "settings": "Settings",
-  "github": "Github",
-  "signOut": "Sign Out",
-  "english": "English",
-  "russian": "Русский"
+  "common": {
+    "welcome": "Home",
+    "discover": "Discover",
+    "movieRelease": "Movie Release",
+    "selection": "Collections",
+    "history": "History",
+    "searchPlaceholder": "Type to search",
+    "myAccount": "My Account",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "github": "Github",
+    "signOut": "Sign Out",
+    "english": "English",
+    "russian": "Русский"
+  },
+  "banner": {
+    "continue": "Continue Watching",
+    "add_to_watchlist": "Add to Watchlist",
+    "remove_from_watchlist": "Remove from Watchlist",
+    "download": "download",
+    "share": "share",
+    "like": "like"
+  },
+ "movietext": {
+   "anime": "Аниме фильмы для вас",
+   "comedy": "Комедийные фильмы для вас",
+   "fantasy": "Фэнтези фильмы для вас",
+   "horror": "Ужасы фильмы для вас",
+   "music": "Музыкальные фильмы для вас",
+   "war": "Военные фильмы для вас"
+ }
 }

@@ -4,9 +4,7 @@ import rating from "../../assets/Logo's/Rating.png";
 import {useHistory} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
-function AnimeMovies(props) {
-    const { t, i18n } = useTranslation();
-
+function MusicMovies(props) {
     const genreMap = {
         28: 'Action',
         12: 'Adventure',
@@ -112,17 +110,13 @@ function AnimeMovies(props) {
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
-    useEffect(() => {
-        getAnimeMovies(i18n.language);
-    }, [i18n.language]);
 
-    const getAnimeMovies = (language) => {
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=16&language=${language}`)
+    const getAnimeMovies = () => {
+        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=10402')
             .then(res => res.json())
             .then(json => setAnimeMovies(json.results))
             .catch(err => console.error("Error fetching anime movies: ", err));
-    };
-
+    }
 
     useEffect(() => {
         getAnimeMovies();
@@ -131,41 +125,42 @@ function AnimeMovies(props) {
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
+    const { t, i18n } = useTranslation();
     return (
-            <div className="MovieAction_start">
-                <div className="MovieAction_text">
-                    <h2 className='MovieText'>{t('movietext.anime')}</h2>
-                </div>
-                <div className="MovieAction_row">
-                    <Slider {...settings}>
-                        {
-                            animeMovies.map(movie => {
-                                return (
-                                    <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
-                                        <div className="MovieBox-img">
-                                            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                                 alt={movie.title}/>
-                                        </div>
-                                        <div className="MovieBox-name">
-                                            <h3>{movie.title}</h3>
-                                            <div className="MovieBox-about">
-                                                <div className="MovieBox-rating">
-                                                    <img src={rating} alt="rating"/>
-                                                    <p>{movie.vote_average}</p>
-                                                </div>
-                                                <div className="MovieBox-category">
-                                                    <p>| {getGenres(movie.genre_ids)}</p>
-                                                </div>
+        <div className="MovieAction_start">
+            <div className="MovieAction_text">
+                <h2 className='MovieText'>{t('movietext.music')}</h2>
+            </div>
+            <div className="MovieAction_row">
+                <Slider {...settings}>
+                    {
+                        animeMovies.map(movie => {
+                            return (
+                                <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
+                                    <div className="MovieBox-img">
+                                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                             alt={movie.title}/>
+                                    </div>
+                                    <div className="MovieBox-name">
+                                        <h3>{movie.title}</h3>
+                                        <div className="MovieBox-about">
+                                            <div className="MovieBox-rating">
+                                                <img src={rating} alt="rating"/>
+                                                <p>{movie.vote_average}</p>
+                                            </div>
+                                            <div className="MovieBox-category">
+                                                <p>| {getGenres(movie.genre_ids)}</p>
                                             </div>
                                         </div>
                                     </div>
-                                )
-                            })
-                        }
-                    </Slider>
-                </div>
+                                </div>
+                            )
+                        })
+                    }
+                </Slider>
             </div>
+        </div>
     );
 }
 
-export default AnimeMovies;
+export default MusicMovies;

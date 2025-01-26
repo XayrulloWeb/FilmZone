@@ -1,16 +1,34 @@
 {
-  "welcome": "Дом",
-  "discover": "Открыть",
-  "movieRelease": "Релиз фильмы",
-  "selection": "Подборка",
-  "history": "История",
-  "searchPlaceholder": "Введите запрос",
-  "myAccount": "Мой аккаунт",
-  "profile": "Профиль",
-  "dashboard": "Панель управления",
-  "settings": "Настройки",
-  "github": "Github",
-  "signOut": "Выйти",
-  "english": "English",
-  "russian": "Русский"
+  "common": {
+    "welcome": "Дом",
+    "discover": "Открыть",
+    "movieRelease": "Релиз фильмы",
+    "selection": "Подборка",
+    "history": "История",
+    "searchPlaceholder": "Введите запрос",
+    "myAccount": "Мой аккаунт",
+    "profile": "Профиль",
+    "dashboard": "Панель управления",
+    "settings": "Настройки",
+    "github": "Github",
+    "signOut": "Выйти",
+    "english": "English",
+    "russian": "Русский"
+  },
+  "banner": {
+    "continue": "Продолжить Просмотр",
+    "add_to_watchlist": "Добавить в список",
+    "remove_from_watchlist": "Убрать из списка",
+    "download": "Скачать",
+    "share": "Поделиться",
+    "like": "Нравится"
+  },
+  "MovieText": {
+    "anime": "Anime Movies for you",
+    "comedy": "Comedy Movies for you",
+    "fantasy": "Fantasy Movies for you",
+    "horror": "Horror Movies for you",
+    "music": "Music Movies for you",
+    "war": "War Movies for you"
+  }
 }
