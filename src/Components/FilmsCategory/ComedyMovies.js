@@ -109,9 +109,7 @@ function ComedyMovies(props) {
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
-    useEffect(() => {
-        getComedyMovies(i18n.language);
-    }, [i18n.language]);
+
 
     const getComedyMovies = (language) => {
         fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=35&language=${language}`)
@@ -122,8 +120,8 @@ function ComedyMovies(props) {
 
 
     useEffect(() => {
-        getComedyMovies();
-    }, []);
+        getComedyMovies(i18n.language);
+    }, [i18n.language]);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров

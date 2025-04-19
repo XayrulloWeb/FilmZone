@@ -5,6 +5,9 @@ import {useHistory} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 function FantasyMovies(props) {
+
+    const { t, i18n } = useTranslation();
+    
     const genreMap = {
         28: 'Action',
         12: 'Adventure',
@@ -103,7 +106,7 @@ function FantasyMovies(props) {
             }
         ]
     };
-    const [animeMovies, setAnimeMovies] = useState([]);
+    const [fantasyMovies, setFantasyMovies] = useState([]);
 
     const history = useHistory();
 
@@ -111,21 +114,25 @@ function FantasyMovies(props) {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
 
-    const getAnimeMovies = () => {
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=14')
+        useEffect(() => {
+            getFantasyMovies(i18n.language);
+        }, [i18n.language]);
+    
+    const getFantasyMovies = (language) => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=14&language=${language}`)
             .then(res => res.json())
-            .then(json => setAnimeMovies(json.results))
+            .then(json => setFantasyMovies(json.results))
             .catch(err => console.error("Error fetching anime movies: ", err));
     }
-
     useEffect(() => {
-        getAnimeMovies();
-    }, []);
+        getFantasyMovies(i18n.language);
+    }, [i18n.language]);
+    
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
-    const { t, i18n } = useTranslation();
+   
     return (
             <div className="MovieAction_start">
                 <div className="MovieAction_text">
@@ -134,7 +141,7 @@ function FantasyMovies(props) {
                 <div className="MovieAction_row">
                     <Slider {...settings}>
                         {
-                            animeMovies.map(movie => {
+                            fantasyMovies.map(movie => {
                                 return (
                                     <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
                                         <div className="MovieBox-img">

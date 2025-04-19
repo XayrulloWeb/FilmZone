@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 function HorrorMovies(props) {
+      const { t, i18n } = useTranslation();
     const genreMap = {
         28: 'Action',
         12: 'Adventure',
@@ -102,30 +103,32 @@ function HorrorMovies(props) {
         ]
     };
     const [horrorMovies, setHorrorMovies] = useState([]);
-    console.log(horrorMovies);
 
     const history = useHistory();
 
+        useEffect(() => {
+            getHorrorMovies(i18n.language);
+        }, [i18n.language]);
+    
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
 
-    const getHorrorMovies = () => {
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=27')
-            .then(res => res.json())
+    const getHorrorMovies = (language) => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=27&language=${language}`)
+        .then(res => res.json())
             .then(json => setHorrorMovies(json.results))
             .catch(err => console.error("Error fetching horror movies: ", err));
     }
 
     useEffect(() => {
-        getHorrorMovies();
-    }, []);
+        getHorrorMovies(i18n.language);
+    }, [i18n.language]);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
     };
 
-    const { t, i18n } = useTranslation();
     return (
         <div>
             <div className="MovieAction_start">
