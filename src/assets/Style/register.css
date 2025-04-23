@@ -1,84 +1,221 @@
-/* Register Page Styles */
-.register-page {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 100;
+/* ВСТАВЬ ЭТО В src/assets/Style/register.css, ПОЛНОСТЬЮ ЗАМЕНИВ СТАРОЕ СОДЕРЖИМОЕ */
+
+/* Общие стили для input (из login.css) */
+input {
+    /* Стили для плейсхолдеров */
+    ::-webkit-input-placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+        color: rgba(255,255,255,0.7);
+        opacity: 1; /* Firefox по умолчанию ставит opacity */
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+        color: rgba(255,255,255,0.7);
+    }
+    :-moz-placeholder { /* Firefox 18- */
+       color: rgba(255,255,255,0.7);
+       opacity: 1;
+    }
+
+    /* Стили для плейсхолдеров при фокусе */
+    &:focus {
+        outline: 0 transparent solid; /* Убираем стандартный outline */
+        ::-webkit-input-placeholder {
+            color: rgba(0,0,0,0.7);
+        }
+        ::-moz-placeholder { /* Firefox 19+ */
+            color: rgba(0,0,0,0.7);
+            opacity: 1;
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+            color: rgba(0,0,0,0.7);
+        }
+         :-moz-placeholder { /* Firefox 18- */
+            color: rgba(0,0,0,0.7);
+            opacity: 1;
+        }
+    }
+}
+
+/* Стили для формы (из login.css) */
+.login-form {
+    min-height: 10rem; /* Минимальная высота */
+    margin: auto; /* Центрирование */
+    max-width: 400px; /* Максимальная ширина */
+    width: 90%; /* Ширина для мобильных */
+    padding: 40px 30px; /* Внутренние отступы */
+    border-radius: 15px; /* Скругление углов */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Полупрозрачная рамка */
+    background-color: rgba(0, 0, 0, 0.2); /* Легкий темный фон для формы */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4); /* Тень */
+    z-index: 10; /* Чтобы была поверх фона */
+    position: relative; /* Для позиционирования login-forgot-pass, если он нужен */
+    box-sizing: border-box;
+}
+
+/* Стили для заголовка (из login.css) */
+.login-text {
+    color: white;
+    font-size: 1.6rem; /* Немного увеличил */
+    margin: 0 auto 30px auto; /* Нижний отступ */
+    padding: .5rem;
+    text-align: center;
+    text-shadow: 1px -1px 0 rgba(0,0,0,0.4); /* Усилена тень */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(to right, #141e30, #243b55);
+    gap: 10px;
+}
+.login-text .fa-stack-2x {
+    color: rgba(255,255,255,0.1); /* Цвет фона иконки */
+}
+.login-text .fa-stack-1x {
+    color: white; /* Цвет самой иконки */
 }
 
-.register-form {
-    border-radius: 10px;
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    max-width: 400px;
-    width: 100%;
-    border: 1px solid #fff
-}
 
-.register-text {
-    color: white;
-    font-size: 1.5rem;
-    margin: 0 auto;
-    max-width: 50%;
-    padding: .5rem;
-    text-align: center;
-text-shadow: 1px -1px 0 rgba(0,0,0,0.3);
-    .fa-stack-1x {
-        color: black;
-    }
-}
-
-.register-email, .register-password {
+/* Стили для инпутов (из login.css) */
+.login-username, .login-password {
+    background: transparent; /* Прозрачный фон */
+    border: 0 solid; /* Без рамки */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* Белая полупрозрачная линия снизу */
+    color: white; /* Цвет текста */
     display: block;
-    height: 50px;
-    width: 100%;
-    background-color: rgba(255,255,255,0.07);
-    border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #e6e6e6;
-    &::placeholder {
-        color: #e6e6e6;
-    }
-    &:focus {
-        background-color: rgba(255,255,255,0.1);
-        outline: none;
-        box-shadow: 0 0 10px rgba(255,255,255,0.5);
-    }
+    margin: 1.5rem auto; /* Отступы сверху/снизу, центрирование не нужно */
+    padding: .75rem .5rem; /* Увеличены отступы */
+    transition: 250ms background ease-in, border-color 0.3s ease; /* Плавный переход */
+    width: 100%; /* Ширина */
+    box-sizing: border-box; /* Учитываем padding */
+    font-size: 1rem;
+}
+.login-username:focus, .login-password:focus {
+    background: rgba(255, 255, 255, 0.9); /* Белый фон при фокусе */
+    color: black; /* Черный текст при фокусе */
+    transition: 250ms background ease-in;
+    border-bottom-color: white; /* Белая линия при фокусе */
 }
 
-.register-submit {
-    margin-top: 50px;
+/* Ссылка "Забыли пароль?" - не используется на странице регистрации */
+.login-forgot-pass {
+    /* ... стили из login.css ... */
+    /* пока не трогаем */
+}
+
+/* Основная кнопка (из login.css) */
+.login-submit {
+    margin-top: 35px; /* Отступ сверху */
     width: 100%;
-    background-color: #ffffff;
-    color: #9b9aa9;
+    background-color: #ffffff; /* Белый фон */
+    color: #243b55; /* Темно-синий текст (из register.css) */
     padding: 15px 0;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 600; /* Сделал жирнее */
     border-radius: 5px;
+    border: none;
     cursor: pointer;
-    transition: 0.3s ease;
-    &:hover {
-        background-color: #e6e6e6;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+.login-submit:hover {
+    background-color: #e6e6e6; /* Светлее при наведении */
+}
+.login-submit:active {
+    transform: scale(0.98);
+}
+
+
+/* Стили для фона (из login.css) */
+[class*=underlay] {
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed;
+    top: 0;
+}
+.underlay-photo {
+    animation: hue-rotate 6s infinite;
+    background: url('https://wallpaperaccess.com/full/37943.jpg') no-repeat center center fixed; /* Твой фон */
+    background-size: cover;
+    filter: grayscale(30%); /* Применяем filter напрямую */
+    z-index: 1; /* Ниже чем underlay-black */
+}
+.underlay-black {
+    background: rgba(0,0,0,0.6); /* Сделал чуть менее темным */
+    z-index: 2; /* Выше фото, ниже формы */
+}
+
+/* Текст "Avval ro'yhatdan..." (из login.css) */
+.reg {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 10px; /* Добавил отступ снизу */
+    color: #cccccc; /* Светлее */
+    display: block;
+    font-size: 14px;
+}
+
+/* Анимация фона (из login.css) */
+@keyframes hue-rotate {
+    from {
+        filter: grayscale(30%) hue-rotate(0deg);
+    }
+    to {
+        filter: grayscale(30%) hue-rotate(360deg);
     }
 }
 
+/* Контейнер страницы (из login.css) */
+.login-page {
+    font-family: 'Open Sans', sans-serif; /* Убедись, что шрифт подключен */
+    font-weight: 100;
+    display: flex;
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+    min-height: 100vh; /* Минимальная высота */
+    overflow-x: hidden; /* Запретить горизонтальную прокрутку */
+    padding: 20px; /* Отступы для мобильных */
+    box-sizing: border-box;
+}
+
+/* --- ДОБАВЛЕНО: Стили для второстепенной кнопки (Kirish) --- */
+.secondary-submit {
+    width: 100%;
+    background-color: transparent; /* Прозрачный фон */
+    color: #ffffff; /* Белый текст */
+    padding: 14px 0; /* Чуть меньше паддинг */
+    font-size: 17px; /* Чуть меньше шрифт */
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Белая полупрозрачная рамка */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+    margin-top: 10px; /* Отступ сверху */
+}
+.secondary-submit:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.secondary-submit:active {
+    transform: scale(0.98);
+}
+
+
+/* Сообщения об ошибке/успехе (оставим из register.css, они лучше) */
+.error, .success {
+    font-size: 14px;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
 .error {
     color: #ff6b6b;
-    font-size: 14px;
-    margin-top: 10px;
+    background-color: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
 }
-
 .success {
     color: #2ecc71;
-    font-size: 14px;
-    margin-top: 10px;
+    background-color: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.3);
 }
-
-

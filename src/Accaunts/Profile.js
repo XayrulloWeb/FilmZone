@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const history = useHistory(); // Для редиректа
 
     useEffect(() => {
         const fetchUserData = async () => {
             setLoading(true);
-            const token = localStorage.getItem('token'); // Tokenni localStorage'dan olish
+            const token = localStorage.getItem('token'); // Получаем токен из localStorage
 
             if (!token) {
                 setError('Foydalanuvchi autentifikatsiyalanmagan.');
                 setLoading(false);
+                history.push('/login'); // Перенаправляем на страницу входа, если токен отсутствует
                 return;
             }
 
             try {
                 const response = await axios.get('http://localhost:8080/api/data/get-users', {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Tokenni so'rovga qo'shish
+                        Authorization: `Bearer ${token}`, // Передаем токен в заголовках
                     },
                 });
                 setUserData(response.data);
@@ -33,14 +36,19 @@ const Profile = () => {
         };
 
         fetchUserData();
-    }, []);
+    }, [history]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Удаляем токен
+        history.push('/login'); // Перенаправляем на страницу входа
+    };
 
     if (loading) {
-        return <div>Loading...</div>; // Loaderni ko'rsatish
+        return <div>Loading...</div>; // Показываем загрузку
     }
 
     if (error) {
-        return <div>{error}</div>; // Xatolikni ko'rsatish
+        return <div>{error}</div>; // Показываем ошибку
     }
 
     return (
@@ -50,9 +58,10 @@ const Profile = () => {
                 <div>
                     <p><strong>Email:</strong> {userData.email}</p>
                     <p><strong>Ism:</strong> {userData.name}</p>
-                    {/* Boshqa foydalanuvchi ma'lumotlarini ham qo'shishingiz mumkin */}
+                    {/* Можно добавить другие данные пользователя */}
                 </div>
             )}
+            <button onClick={handleLogout}>Logout</button> {/* Кнопка выхода */}
         </div>
     );
 };

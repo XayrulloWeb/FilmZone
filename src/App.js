@@ -1,63 +1,68 @@
+// src/App.js
 import React, { useEffect, useState } from 'react';
+// --- ИСПОЛЬЗУЕМ Switch ИЗ СТАРОЙ ВЕРСИИ ---
+import { Switch, Route, useLocation } from 'react-router-dom';
+// -----------------------------------------
 import Navbar from "./Header/Navbar/Navbar";
-import { Switch, Route, useLocation, useParams } from 'react-router-dom';
 import routes from "./routes";
 import '../src/assets/Style/style.css';
 import Loader from "./Components/Loader/Loader";
-import axios from 'axios';
+// import axios from 'axios'; // Не используется напрямую здесь
 import SearchResults from "./Components/search component/SearchResults";
 import Footer from "./Footer/Footer";
 import NavbarMobile from "./Header/Navbar/NavbarMobile";
+// import NotFoundPage from './Pages/NotFoundPage'; // Импортируй страницу 404, если она есть
 
 function App() {
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
     const location = useLocation();
-    const { id } = useParams();
+    // useParams можно использовать только внутри рендер-функции Route или компонента, который рендерится Route
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true); // Включаем loader перед началом запроса
-            try {
-                if (id) {
-                    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=bc25b198a01dce97d9fbeb1bada0f375`);
-                    setData(response.data);
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setTimeout(() => { // Задержка для тестирования loader
-                    setLoading(false);
-                }, 2000); // Устанавливаем таймаут 2 секунды
-            }
-        };
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 500); // Уменьшил время лоадера
+        return () => clearTimeout(timer);
+    }, [location]);
 
-        fetchData();
-    }, [location, id]);
+    // Определяем, нужно ли показывать Navbar и Footer
+    const showHeaderFooter = !['/login', '/register'].includes(location.pathname);
 
     return (
         <div className="App">
             {loading ? (
-                <Loader /> // Show loader while loading
+                <Loader />
             ) : (
                 <div className="wrapper">
+                    {/* Показываем мобильный навбар */}
                     <NavbarMobile/>
 
-                    {location.pathname !== '/login' && <Navbar />}
+                    {/* Показываем основной Navbar */}
+                    {showHeaderFooter && <Navbar />}
+
                     <div className="routes">
+                        {/* --- ИСПОЛЬЗУЕМ Switch И component --- */}
                         <Switch>
                             {routes.map(item => (
                                 <Route
                                     key={item.id}
                                     path={item.path}
-                                    component={item.component}
-                                    exact
+                                    component={item.component} // Используем component
+                                    exact // Добавляем exact для большинства маршрутов
                                 />
                             ))}
+                            {/* Убери exact для MovieDetails, если путь /movie/:id */}
+                             {/* <Route path="/movie/:id" component={MovieDetails} /> */}
                             <Route path="/search-results" component={SearchResults} />
+
+                            {/* Роут для 404 страницы должен быть последним и без path */}
+                            {/* <Route component={NotFoundPage} /> */}
                         </Switch>
+                        {/* ---------------------------------- */}
                     </div>
-                    <Footer/>
+                    {/* Показываем Footer */}
+                    {showHeaderFooter && <Footer/>}
                 </div>
             )}
         </div>
