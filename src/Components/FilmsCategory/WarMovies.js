@@ -103,24 +103,25 @@ function WarMovies(props) {
             }
         ]
     };
-    const [animeMovies, setAnimeMovies] = useState([]);
+    const { t, i18n } = useTranslation();
+
+    const [warMovies, setWarMovies] = useState([]);
 
     const history = useHistory();
 
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
-    const { t, i18n } = useTranslation();
-    const getAnimeMovies = () => {
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=10752')
+    const getWarMovies = (language) => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=10752&language=${language}`)
             .then(res => res.json())
-            .then(json => setAnimeMovies(json.results))
+            .then(json => setWarMovies(json.results))
             .catch(err => console.error("Error fetching anime movies: ", err));
     }
 
     useEffect(() => {
-        getAnimeMovies();
-    }, []);
+        getWarMovies(i18n.language);
+    }, [i18n.language]);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
@@ -134,7 +135,7 @@ function WarMovies(props) {
             <div className="MovieAction_row">
                 <Slider {...settings}>
                     {
-                        animeMovies.map(movie => {
+                        warMovies.map(movie => {
                             return (
                                 <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
                                     <div className="MovieBox-img">

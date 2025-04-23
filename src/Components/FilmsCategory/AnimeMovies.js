@@ -125,8 +125,8 @@ function AnimeMovies(props) {
 
 
     useEffect(() => {
-        getAnimeMovies();
-    }, []);
+        getAnimeMovies(i18n.language);
+    }, [i18n.language]);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
