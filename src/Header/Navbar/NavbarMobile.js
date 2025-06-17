@@ -5,7 +5,7 @@ import "../../Lang/i18n";
 
 
 function NavbarMobile(props) {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [activeLink, setActiveLink] = useState("/");
 
     // Обработчик для изменения активного элемента

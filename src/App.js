@@ -57,7 +57,7 @@ function App() {
                             <Route path="/search-results" component={SearchResults} />
 
                             {/* Роут для 404 страницы должен быть последним и без path */}
-                            {/* <Route component={NotFoundPage} /> */}
+                            <Route component={require('./Pages/NotFoundPage').default} />
                         </Switch>
                         {/* ---------------------------------- */}
                     </div>

@@ -1,5 +1,5 @@
 // src/Pages/Login/Login.js
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
 // import { AuthContext } from '../../context/AuthContext'; // Пример импорта контекста

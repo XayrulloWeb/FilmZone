@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 
 
 const Banner = ({ movieDetails, handleDownload, handleShare, handleLike, liked }) => {
-        const { t, i18n } = useTranslation();
+        const { t } = useTranslation();
     
 
     return (

@@ -51,14 +51,17 @@
         },
         {
             id: 9,
-            path: 'users',
+            path: '/users',
             component: UsersList, // men qo'shgan marshrut-3
         },
         {
             id: 10,
             path: '/about',
             component: About,
+        },
+        {
+            id: 11,
+            component: require('./Pages/NotFoundPage').default,
         }
-
     ]
     export default routes;

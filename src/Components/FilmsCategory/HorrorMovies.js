@@ -106,9 +106,9 @@ function HorrorMovies(props) {
 
     const history = useHistory();
 
-        useEffect(() => {
-            getHorrorMovies(i18n.language);
-        }, [i18n.language]);
+    useEffect(() => {
+        getHorrorMovies(i18n.language);
+    }, [i18n.language]);
     
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
@@ -120,10 +120,6 @@ function HorrorMovies(props) {
             .then(json => setHorrorMovies(json.results))
             .catch(err => console.error("Error fetching horror movies: ", err));
     }
-
-    useEffect(() => {
-        getHorrorMovies(i18n.language);
-    }, [i18n.language]);
 
     const getGenres = (genreIds) => {
         return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров

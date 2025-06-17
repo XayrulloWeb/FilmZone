@@ -1,5 +1,5 @@
 // src/Header/Navbar/Navbar.js
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
@@ -102,7 +102,7 @@ function Navbar() {
         });
     };
 
-    const handleClickOutside = (event) => {
+    const handleClickOutside = useCallback((event) => {
         if (
             isOpen &&
             buttonRef.current &&
@@ -113,12 +113,12 @@ function Navbar() {
             setIsOpen(false);
             closeDropdown();
         }
-    };
+    }, [isOpen]);
 
     useEffect(() => {
         document.addEventListener("click", handleClickOutside);
         return () => document.removeEventListener("click", handleClickOutside);
-    }, [isOpen]);
+    }, [isOpen, handleClickOutside]);
 
 
 	// --- Поиск (без изменений) ---

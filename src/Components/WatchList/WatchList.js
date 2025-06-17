@@ -18,7 +18,7 @@ const updateWatchlist = (movieDetails, add) => {
 
 const Watchlist = ({ movieDetails }) => {
     const [isInWatchlist, setIsInWatchlist] = useState(false);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const savedWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
