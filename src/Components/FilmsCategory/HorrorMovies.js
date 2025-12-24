@@ -1,37 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import rating from "../../assets/Logo's/Rating.png";
-import {useHistory} from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import tmdbService from "../../services/tmdbService";
+import { getGenreNames, getImageUrl } from "../../utils/helpers";
 
 function HorrorMovies(props) {
-      const { t, i18n } = useTranslation();
-    const genreMap = {
-        28: 'Action',
-        12: 'Adventure',
-        16: 'Animation',
-        35: 'Comedy',
-        80: 'Crime',
-        99: 'Documentary',
-        18: 'Drama',
-        10751: 'Family',
-        14: 'Fantasy',
-        36: 'History',
-        27: 'Horror',
-        10402: 'Music',
-        9648: 'Mystery',
-        10749: 'Romance',
-        878: 'Science Fiction',
-        10770: 'TV Movie',
-        53: 'Thriller',
-        10752: 'War',
-        37: 'Western'
-    };
+    const { t, i18n } = useTranslation();
     const settings = {
         dots: true,
         infinite: false,
         speed: 500,
-        autoplay:true,
+        autoplay: true,
         slidesToShow: 5.4,
         slidesToScroll: 1,
         responsive: [
@@ -109,21 +90,21 @@ function HorrorMovies(props) {
     useEffect(() => {
         getHorrorMovies(i18n.language);
     }, [i18n.language]);
-    
+
     const handleMovieClick = (id) => {
         history.push(`/movie/${id}`);  // Используем history.push вместо navigate
     };
 
-    const getHorrorMovies = (language) => {
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&with_genres=27&language=${language}`)
-        .then(res => res.json())
-            .then(json => setHorrorMovies(json.results))
-            .catch(err => console.error("Error fetching horror movies: ", err));
-    }
-
-    const getGenres = (genreIds) => {
-        return genreIds.map(id => genreMap[id]).slice(0, 3).join(', ');  // Отображаем до 3 жанров
+    const getHorrorMovies = async (language) => {
+        try {
+            const results = await tmdbService.discoverByGenre(27, language);
+            setHorrorMovies(results);
+        } catch (err) {
+            console.error("Error fetching horror movies: ", err);
+        }
     };
+
+
 
     return (
         <div>
@@ -138,18 +119,18 @@ function HorrorMovies(props) {
                                 return (
                                     <div className="MovieBox" onClick={() => handleMovieClick(movie.id)} key={movie.id}>
                                         <div className="MovieBox-img">
-                                            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                                 alt={movie.title}/>
+                                            <img src={getImageUrl(movie.poster_path)}
+                                                alt={movie.title} />
                                         </div>
                                         <div className="MovieBox-name">
                                             <h3>{movie.title}</h3>
                                             <div className="MovieBox-about">
                                                 <div className="MovieBox-rating">
-                                                    <img src={rating} alt="rating"/>
+                                                    <img src={rating} alt="rating" />
                                                     <p>{movie.vote_average}</p>
                                                 </div>
                                                 <div className="MovieBox-category">
-                                                    <p>| {getGenres(movie.genre_ids)}</p>
+                                                    <p>| {getGenreNames(movie.genre_ids)}</p>
                                                 </div>
                                             </div>
                                         </div>

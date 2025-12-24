@@ -65,60 +65,60 @@ function Navbar() {
 
 
 	// --- Обработка дропдауна (без изменений) ---
-    const openDropdown = () => {
-        if (dropdownRef.current) {
-            dropdownRef.current.classList.remove("hidden", "dropdown-close");
-            dropdownRef.current.classList.add("dropdown-open");
-        }
-    };
+	const openDropdown = () => {
+		if (dropdownRef.current) {
+			dropdownRef.current.classList.remove("hidden", "dropdown-close");
+			dropdownRef.current.classList.add("dropdown-open");
+		}
+	};
 
-    const closeDropdown = () => {
-        if (dropdownRef.current && dropdownRef.current.classList.contains("dropdown-open")) {
-            dropdownRef.current.classList.replace("dropdown-open", "dropdown-close");
-            dropdownRef.current.addEventListener(
-                "animationend",
-                () => {
-                    if (dropdownRef.current) {
-                        dropdownRef.current.classList.add("hidden");
-                        dropdownRef.current.classList.remove("dropdown-close");
-                    }
-                },
-                { once: true }
-            );
-        } else if (dropdownRef.current) {
-             dropdownRef.current.classList.add("hidden");
-        }
-    };
+	const closeDropdown = () => {
+		if (dropdownRef.current && dropdownRef.current.classList.contains("dropdown-open")) {
+			dropdownRef.current.classList.replace("dropdown-open", "dropdown-close");
+			dropdownRef.current.addEventListener(
+				"animationend",
+				() => {
+					if (dropdownRef.current) {
+						dropdownRef.current.classList.add("hidden");
+						dropdownRef.current.classList.remove("dropdown-close");
+					}
+				},
+				{ once: true }
+			);
+		} else if (dropdownRef.current) {
+			dropdownRef.current.classList.add("hidden");
+		}
+	};
 
-    const toggleDropdown = () => {
-        setIsOpen((prev) => {
-            const nextState = !prev;
-            if (nextState) {
-                openDropdown();
-            } else {
-                closeDropdown();
-            }
-            return nextState;
-        });
-    };
+	const toggleDropdown = () => {
+		setIsOpen((prev) => {
+			const nextState = !prev;
+			if (nextState) {
+				openDropdown();
+			} else {
+				closeDropdown();
+			}
+			return nextState;
+		});
+	};
 
-    const handleClickOutside = useCallback((event) => {
-        if (
-            isOpen &&
-            buttonRef.current &&
-            dropdownRef.current &&
-            !buttonRef.current.contains(event.target) &&
-            !dropdownRef.current.contains(event.target)
-        ) {
-            setIsOpen(false);
-            closeDropdown();
-        }
-    }, [isOpen]);
+	const handleClickOutside = useCallback((event) => {
+		if (
+			isOpen &&
+			buttonRef.current &&
+			dropdownRef.current &&
+			!buttonRef.current.contains(event.target) &&
+			!dropdownRef.current.contains(event.target)
+		) {
+			setIsOpen(false);
+			closeDropdown();
+		}
+	}, [isOpen]);
 
-    useEffect(() => {
-        document.addEventListener("click", handleClickOutside);
-        return () => document.removeEventListener("click", handleClickOutside);
-    }, [isOpen, handleClickOutside]);
+	useEffect(() => {
+		document.addEventListener("click", handleClickOutside);
+		return () => document.removeEventListener("click", handleClickOutside);
+	}, [isOpen, handleClickOutside]);
 
 
 	// --- Поиск (без изменений) ---
@@ -134,19 +134,19 @@ function Navbar() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-             if (searchTerm) {
-                try {
-                    const query = encodeURIComponent(searchTerm);
-                    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&query=${query}`);
-                    const result = await response.json();
-                    const sortedResults = result.results.sort((a, b) => b.popularity - a.popularity);
-                    setData(sortedResults);
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                }
-            } else {
-                setData([]);
-            }
+			if (searchTerm) {
+				try {
+					const query = encodeURIComponent(searchTerm);
+					const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=bc25b198a01dce97d9fbeb1bada0f375&query=${query}`);
+					const result = await response.json();
+					const sortedResults = result.results.sort((a, b) => b.popularity - a.popularity);
+					setData(sortedResults);
+				} catch (error) {
+					console.error("Error fetching data:", error);
+				}
+			} else {
+				setData([]);
+			}
 		};
 		fetchData();
 	}, [searchTerm]);
@@ -160,7 +160,7 @@ function Navbar() {
 	const handleSearchSubmit = (event) => {
 		event.preventDefault();
 		if (searchTerm) {
-            setIsActive(false);
+			setIsActive(false);
 			history.push('/search-results', { results: filteredData, searchQuery: searchTerm });
 		}
 	};
@@ -196,64 +196,67 @@ function Navbar() {
 						<ul>
 							<li><Link className="navbar_active" to="/"><i className="fa-solid fa-home"></i>{t('common.welcome')}</Link></li>
 							<li><Link to="/discover"><i className="fa-solid fa-layer-group"></i>{t('common.selection')}</Link></li>
+							<li><Link to="/trending"><i className="fa-solid fa-fire"></i>{t('common.trending')}</Link></li>
+							<li><Link to="/top-rated"><i className="fa-solid fa-star"></i>{t('common.topRated')}</Link></li>
+							<li><Link to="/now-playing"><i className="fa-solid fa-film"></i>{t('common.nowPlaying')}</Link></li>
 							<li><Link to="/movie-release"><i className="fa-solid fa-clock"></i>{t('common.movieRelease')}</Link></li>
 							<li><Link to="/about"><i className="fa-solid fa-history"></i>{t('common.history')}</Link></li>
 						</ul>
-                         {/* Показываем поиск и язык только в мобильном меню */}
-                         <div className="navbar_profile-search mobile-only"> {/* Класс для стилизации, если нужен */}
-                             <form onSubmit={handleSearchSubmit}>
-                                <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
-                                    <div className="input-holder">
-                                        <input
-                                            type="text"
-                                            className="search-input"
-                                            placeholder="Type to search"
-                                            value={searchTerm}
-                                            onChange={(e) => setSearchTerm(e.target.value)}
-                                        />
-                                         <i className="fa-solid fa-magnifying-glass"></i> {/* Иконка внутри */}
-                                    </div>
-                                </div>
-                            </form>
-                         </div>
-                          <div className="language-switcher mobile-only"> {/* Класс для стилизации */}
-                             {/* Твой код переключателя языка */}
-                         </div>
+						{/* Показываем поиск и язык только в мобильном меню */}
+						<div className="navbar_profile-search mobile-only"> {/* Класс для стилизации, если нужен */}
+							<form onSubmit={handleSearchSubmit}>
+								<div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
+									<div className="input-holder">
+										<input
+											type="text"
+											className="search-input"
+											placeholder="Type to search"
+											value={searchTerm}
+											onChange={(e) => setSearchTerm(e.target.value)}
+										/>
+										<i className="fa-solid fa-magnifying-glass"></i> {/* Иконка внутри */}
+									</div>
+								</div>
+							</form>
+						</div>
+						<div className="language-switcher mobile-only"> {/* Класс для стилизации */}
+							{/* Твой код переключателя языка */}
+						</div>
 					</div>
 
 					{/* Правая часть навбара */}
 					<div className="navbar_profile">
 						{/* Переключатель языка (только десктоп) */}
 						<div className="language-switcher desktop-only"> {/* Класс для стилизации */}
-                            <button className="selected-language" onClick={() => setLangOpen(!isLangOpen)}>
-                                {i18n.language === 'ru' ? 'RU' : i18n.language === 'en' ? 'EN' : 'UZ'} <span className="arrow">▾</span>
-                            </button>
-                            {isLangOpen && (
-                                <div className={`dropdown-lang ${isLangOpen ? 'show' : ''}`}>
-                                    <button onClick={() => changeLanguage('ru')} className="language-option">Русский</button>
-                                    <button onClick={() => changeLanguage('en')} className="language-option">English</button>
-                                    <button onClick={() => changeLanguage('uz')} className="language-option">Uzbek</button>
-                                </div>
-                            )}
-                        </div>
+							<button className="selected-language" onClick={() => setLangOpen(!isLangOpen)}>
+								{i18n.language === 'ru' ? 'RU' : i18n.language === 'en' ? 'EN' : 'UZ'} <span className="arrow">▾</span>
+							</button>
+							{isLangOpen && (
+								<div className={`dropdown-lang ${isLangOpen ? 'show' : ''}`}>
+									<button onClick={() => changeLanguage('ru')} className="language-option">Русский</button>
+									<button onClick={() => changeLanguage('en')} className="language-option">English</button>
+									<button onClick={() => changeLanguage('uz')} className="language-option">Uzbek</button>
+								</div>
+							)}
+						</div>
 
 						{/* Поиск (только десктоп) */}
 						<div className="desktop-only"> {/* Класс для стилизации */}
-                            <form onSubmit={handleSearchSubmit}>
-                                <div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
-                                    <div className="input-holder">
-                                        <input
-                                            type="text"
-                                            className="search-input"
-                                            placeholder="Type to search"
-                                            value={searchTerm}
-                                            onChange={(e) => setSearchTerm(e.target.value)}
-                                        />
-                                        <i className="fa-solid fa-magnifying-glass"></i> {/* Иконка внутри */}
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+							<form onSubmit={handleSearchSubmit}>
+								<div className={`search-wrapper ${isActive ? 'active' : ''}`} onClick={searchToggle}>
+									<div className="input-holder">
+										<input
+											type="text"
+											className="search-input"
+											placeholder="Type to search"
+											value={searchTerm}
+											onChange={(e) => setSearchTerm(e.target.value)}
+										/>
+										<i className="fa-solid fa-magnifying-glass"></i> {/* Иконка внутри */}
+									</div>
+								</div>
+							</form>
+						</div>
 
 						{/* Уведомления (только десктоп) */}
 						<div className="navbar_profile-notification desktop-only"> {/* Класс для стилизации */}
@@ -274,17 +277,17 @@ function Navbar() {
 							) : user ? (
 								// Пользователь ЗАЛОГИНЕН
 								<>
-                                    {/* --- ИСПРАВЛЕНИЕ ЗДЕСЬ --- */}
+									{/* --- ИСПРАВЛЕНИЕ ЗДЕСЬ --- */}
 									<div className="p-2 user-info"> {/* Добавь класс user-info */}
 										<i className="fa-solid fa-user"></i>
 										{/* Отображаем никнейм, если есть, иначе email */}
 										<span>{user.username || user.email}</span>
 									</div>
-                                    {/* --- КОНЕЦ ИСПРАВЛЕНИЯ --- */}
+									{/* --- КОНЕЦ ИСПРАВЛЕНИЯ --- */}
 
-                                    <div className="p-1"> {/* Убери p-1, если стили на item */}
-									    <button className="dropdown-item" onClick={() => { history.push('/my-account'); closeDropdown(); }}>My Account</button>
-                                    </div>
+									<div className="p-1"> {/* Убери p-1, если стили на item */}
+										<button className="dropdown-item" onClick={() => { history.push('/my-account'); closeDropdown(); }}>My Account</button>
+									</div>
 									<div className="p-1"> {/* Убери p-1, если стили на item */}
 										<button onClick={handleLogout} className="dropdown-item logout-btn">Выйти</button>
 									</div>
@@ -305,9 +308,7 @@ function Navbar() {
 				</div>
 
 				{/* Гамбургер для мобильной версии */}
-				<div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
-					<i className={`fa-solid ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-				</div>
+
 			</div>
 		</div>
 	);

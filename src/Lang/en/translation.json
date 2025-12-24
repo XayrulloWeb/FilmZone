@@ -1,4 +1,3 @@
-
 {
   "common": {
     "welcome": "Home",
@@ -6,6 +5,9 @@
     "movieRelease": "Movie Release",
     "selection": "Collections",
     "history": "History",
+    "trending": "Trending",
+    "topRated": "Top Rated",
+    "nowPlaying": "Now Playing",
     "searchPlaceholder": "Type to search",
     "myAccount": "My Account",
     "profile": "Profile",
@@ -14,22 +16,66 @@
     "github": "Github",
     "signOut": "Sign Out",
     "english": "English",
-    "russian": "Русский"
+    "russian": "Русский",
+    "uzbek": "O'zbek"
   },
   "banner": {
     "continue": "Continue Watching",
     "add_to_watchlist": "Add to Watchlist",
     "remove_from_watchlist": "Remove from Watchlist",
-    "download": "download",
-    "share": "share",
-    "like": "like"
+    "download": "Download",
+    "share": "Share",
+    "like": "Like"
   },
- "movietext": {
-   "anime": "Аниме фильмы для вас",
-   "comedy": "Комедийные фильмы для вас",
-   "fantasy": "Фэнтези фильмы для вас",
-   "horror": "Ужасы фильмы для вас",
-   "music": "Музыкальные фильмы для вас",
-   "war": "Военные фильмы для вас"
- }
+  "movietext": {
+    "anime": "Anime Movies for You",
+    "comedy": "Comedy Movies for You",
+    "fantasy": "Fantasy Movies for You",
+    "horror": "Horror Movies for You",
+    "music": "Music Movies for You",
+    "war": "War Movies for You"
+  },
+  "pages": {
+    "trending": {
+      "title": "Trending Movies",
+      "today": "Today",
+      "thisWeek": "This Week"
+    },
+    "topRated": {
+      "title": "Top Rated Movies",
+      "loadMore": "Load More"
+    },
+    "nowPlaying": {
+      "title": "Now Playing in Theaters"
+    },
+    "movieDetails": {
+      "trailer": "Trailer",
+      "otherVideos": "Other Videos",
+      "overview": "Overview",
+      "cast": "Cast",
+      "reviews": "Reviews",
+      "year": "Year",
+      "runtime": "Runtime",
+      "hours": "h",
+      "minutes": "m",
+      "country": "Country",
+      "language": "Language",
+      "budget": "Budget",
+      "revenue": "Revenue",
+      "genres": "Genres",
+      "director": "Director",
+      "screenplay": "Screenplay",
+      "producers": "Producers",
+      "description": "Description",
+      "production": "Production",
+      "keywords": "Keywords",
+      "castTitle": "Cast & Crew",
+      "reviewsTitle": "User Reviews",
+      "recommended": "Recommended",
+      "similar": "Similar Movies",
+      "noDescription": "No description available",
+      "checkOut": "Check out this movie"
+    }
+  },
+  "loading": "Loading..."
 }

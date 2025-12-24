@@ -3,29 +3,29 @@ import "../../assets/Style/style.css";
 import MovieCard from "../../Components/MovieCard/MovieCard";
 import tmdbService from "../../services/tmdbService";
 
-function Discover() {
+const MovieRelease = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchDiscover = async () => {
+        const fetchUpcoming = async () => {
             try {
-                const results = await tmdbService.discoverPopular();
+                const results = await tmdbService.getUpcoming();
                 setMovies(results);
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching discover movies:", error);
+                console.error("Error fetching upcoming movies:", error);
                 setLoading(false);
             }
         };
 
-        fetchDiscover();
+        fetchUpcoming();
     }, []);
 
     return (
         <div style={{ background: '#000', minHeight: '100vh', padding: '100px 0' }}>
             <div className="container">
-                <h1 className="MovieText" style={{ marginBottom: "30px" }}>Discover Movies</h1>
+                <h1 className="MovieText" style={{ marginBottom: "30px" }}>Upcoming Releases</h1>
                 {loading ? (
                     <div className="loader">Loading...</div>
                 ) : (
@@ -43,6 +43,6 @@ function Discover() {
             </div>
         </div>
     );
-}
+};
 
-export default Discover;
+export default MovieRelease;

@@ -1,34 +1,81 @@
 {
   "common": {
-    "welcome": "Дом",
-    "discover": "Открыть",
-    "movieRelease": "Релиз фильмы",
-    "selection": "Подборка",
+    "welcome": "Главная",
+    "discover": "Подборка",
+    "movieRelease": "Релизы",
+    "selection": "Коллекции",
     "history": "История",
-    "searchPlaceholder": "Введите запрос",
+    "trending": "В тренде",
+    "topRated": "Лучшие",
+    "nowPlaying": "Сейчас в кино",
+    "searchPlaceholder": "Введите для поиска",
     "myAccount": "Мой аккаунт",
     "profile": "Профиль",
-    "dashboard": "Панель управления",
+    "dashboard": "Панель",
     "settings": "Настройки",
     "github": "Github",
     "signOut": "Выйти",
     "english": "English",
-    "russian": "Русский"
+    "russian": "Русский",
+    "uzbek": "O'zbek"
   },
   "banner": {
-    "continue": "Продолжить Просмотр",
-    "add_to_watchlist": "Добавить в список",
-    "remove_from_watchlist": "Убрать из списка",
+    "continue": "Продолжить просмотр",
+    "add_to_watchlist": "Добавить в избранное",
+    "remove_from_watchlist": "Удалить из избранного",
     "download": "Скачать",
     "share": "Поделиться",
     "like": "Нравится"
   },
-  "MovieText": {
-    "anime": "Anime Movies for you",
-    "comedy": "Comedy Movies for you",
-    "fantasy": "Fantasy Movies for you",
-    "horror": "Horror Movies for you",
-    "music": "Music Movies for you",
-    "war": "War Movies for you"
-  }
+  "movietext": {
+    "anime": "Аниме фильмы для вас",
+    "comedy": "Комедийные фильмы для вас",
+    "fantasy": "Фэнтези фильмы для вас",
+    "horror": "Ужасы для вас  ",
+    "music": "Музыкальные фильмы для вас",
+    "war": "Военные фильмы для вас"
+  },
+  "pages": {
+    "trending": {
+      "title": "В тренде",
+      "today": "Сегодня",
+      "thisWeek": "На этой неделе"
+    },
+    "topRated": {
+      "title": "Лучшие по рейтингу",
+      "loadMore": "Загрузить ещё"
+    },
+    "nowPlaying": {
+      "title": "Сейчас в кинотеатрах"
+    },
+    "movieDetails": {
+      "trailer": "Трейлер",
+      "otherVideos": "Другие видео",
+      "overview": "Обзор",
+      "cast": "Актёры",
+      "reviews": "Отзывы",
+      "year": "Год",
+      "runtime": "Длительность",
+      "hours": "ч",
+      "minutes": "мин",
+      "country": "Страна",
+      "language": "Язык",
+      "budget": "Бюджет",
+      "revenue": "Сборы",
+      "genres": "Жанры",
+      "director": "Режиссёр",
+      "screenplay": "Сценарий",
+      "producers": "Продюсеры",
+      "description": "Описание",
+      "production": "Производство",
+      "keywords": "Ключевые слова",
+      "castTitle": "Актёрский состав",
+      "reviewsTitle": "Отзывы пользователей",
+      "recommended": "Рекомендуем",
+      "similar": "Похожие фильмы",
+      "noDescription": "Описание отсутствует",
+      "checkOut": "Посмотри этот фильм"
+    }
+  },
+  "loading": "Загрузка..."
 }

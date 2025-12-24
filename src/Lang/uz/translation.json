@@ -1,34 +1,81 @@
 {
   "common": {
     "welcome": "Bosh sahifa",
-    "discover": "Kashf etish",
-    "movieRelease": "Yangi Filmlar",
+    "discover": "Tanlash",
+    "movieRelease": "Chiqish sanalari",
     "selection": "To'plamlar",
     "history": "Tarix",
-    "searchPlaceholder": "Izlash uchun yozing",
-    "myAccount": "Mening hisobim",
+    "trending": "Trendda",
+    "topRated": "Eng yuqori baho",
+    "nowPlaying": "Hozir kinoteatrlarda",
+    "searchPlaceholder": "Qidirish uchun yozing",
+    "myAccount": "Mening akkauntim",
     "profile": "Profil",
     "dashboard": "Boshqaruv paneli",
     "settings": "Sozlamalar",
     "github": "Github",
     "signOut": "Chiqish",
-    "english": "Inglizcha",
-    "russian": "Ruscha"
+    "english": "English",
+    "russian": "Русский",
+    "uzbek": "O'zbek"
   },
   "banner": {
-    "continue": "Ko'rishni davom ettirish",
-    "add_to_watchlist": " Ro'yxatiga qo'shish",
-    "remove_from_watchlist": " Ro'yxatidan o'chirish",
+    "continue": "Tomosha qilishni davom ettirish",
+    "add_to_watchlist": "Sevimlilar ro'yxatiga qo'shish",
+    "remove_from_watchlist": "Sevimlilardan o'chirish",
     "download": "Yuklab olish",
     "share": "Ulashish",
-    "like": "Yoqqan"
+    "like": "Yoqdi"
   },
   "movietext": {
     "anime": "Siz uchun anime filmlar",
-    "comedy": "Siz uchun komediya filmlari",
-    "fantasy": "Siz uchun fentezi filmlari",
-    "horror": "Siz uchun dahshat filmlari",
+    "comedy": "Siz uchun komediya filmlar",
+    "fantasy": "Siz uchun fantastika filmlar",
+    "horror": "Siz uchun qo'rqinchli filmlar",
     "music": "Siz uchun musiqiy filmlar",
     "war": "Siz uchun urush filmlari"
-  }
+  },
+  "pages": {
+    "trending": {
+      "title": "Trendda bo'lgan filmlar",
+      "today": "Bugun",
+      "thisWeek": "Bu hafta"
+    },
+    "topRated": {
+      "title": "Eng yuqori baholangan filmlar",
+      "loadMore": "Ko'proq yuklash"
+    },
+    "nowPlaying": {
+      "title": "Hozir kinoteatrlarda"
+    },
+    "movieDetails": {
+      "trailer": "Treyler",
+      "otherVideos": "Boshqa videolar",
+      "overview": "Umumiy ma'lumot",
+      "cast": "Aktyorlar",
+      "reviews": "Sharhlar",
+      "year": "Yil",
+      "runtime": "Davomiyligi",
+      "hours": "s",
+      "minutes": "daq",
+      "country": "Mamlakat",
+      "language": "Til",
+      "budget": "Byudjet",
+      "revenue": "Daromad",
+      "genres": "Janrlar",
+      "director": "Rejissyor",
+      "screenplay": "Ssenariy",
+      "producers": "Prodyuserlar",
+      "description": "Tavsif",
+      "production": "Ishlab chiqarish",
+      "keywords": "Kalit so'zlar",
+      "castTitle": "Aktyorlar va ekipaj",
+      "reviewsTitle": "Foydalanuvchilar sharhlari",
+      "recommended": "Tavsiya etiladi",
+      "similar": "O'xshash filmlar",
+      "noDescription": "Tavsif mavjud emas",
+      "checkOut": "Ushbu filmni ko'ring"
+    }
+  },
+  "loading": "Yuklanmoqda..."
 }
